@@ -43,16 +43,16 @@ namespace DAL
         }//End create doctor method
 
         //Read
-        public static List<VO_Doctor> ListDoctor(params object[] parameters)
+        public static List<VO_Doctor> ListDoctors(params object[] parameters)
         {
             //creo una lista de objetox VO
             List<VO_Doctor> list = new List<VO_Doctor>();
             try
             {
                 //creo un DataSet el cuál recibirá lo que devuelva la ejecución del método "execute_DataSet" de la clase "metodos_datos"
-                DataSet dsdoctor = DataGetObject.executeDataSet("SP_List_Doctor", parameters);
+                DataSet dsDoctor = DataGetObject.executeDataSet("SP_List_Doctor", parameters);
                 //recorro cada renglón existente de nuestro ds creando objetos del tipo VO y añadiendolos a la lista
-                foreach (DataRow dr in dsdoctor.Tables[0].Rows)
+                foreach (DataRow dr in dsDoctor.Tables[0].Rows)
                 {
                     list.Add(new VO_Doctor(dr));
                 }
@@ -100,7 +100,7 @@ namespace DAL
         }//End update doctor method
 
         //Delete
-        public static string SP_Delete_Doctor(int id)
+        public static string DeleteDoctor(int id)
         {
             string outputResult = "";
             int response = 0;

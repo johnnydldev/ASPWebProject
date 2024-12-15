@@ -43,7 +43,7 @@ namespace DAL
         }//End create diagnostic method
 
         //Read
-        public static List<VO_Diagnostic> Listdiagnostic(params object[] parameters)
+        public static List<VO_Diagnostic> ListDiagnostics(params object[] parameters)
         {
             //creo una lista de objetox VO
             List<VO_Diagnostic> list = new List<VO_Diagnostic>();
@@ -67,7 +67,7 @@ namespace DAL
         }//End list diagnostic method
 
         //Update
-        public static string Updatediagnostic(VO_Diagnostic diagnostic)
+        public static string UpdateDiagnostic(VO_Diagnostic diagnostic)
         {
             string outputResult = "";
             int response = 0;
@@ -100,7 +100,7 @@ namespace DAL
         }//End update diagnostic method
 
         //Delete
-        public static string SP_Delete_Diagnostic(int id)
+        public static string DeleteDiagnostic(int id)
         {
             string outputResult = "";
             int response = 0;

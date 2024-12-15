@@ -98,7 +98,7 @@ namespace DAL
         }//End update patient method
 
         //Delete
-        public static string SP_Delete_Patient(int id)
+        public static string DeletePatient(int id)
         {
             string outputResult = "";
             int response = 0;

@@ -40,7 +40,7 @@ namespace DAL
         }//End create treatment method
 
         //Read
-        public static List<VO_Treatment> Listtreatment(params object[] parameters)
+        public static List<VO_Treatment> ListTreatment(params object[] parameters)
         {
             //creo una lista de objetox VO
             List<VO_Treatment> list = new List<VO_Treatment>();
@@ -64,7 +64,7 @@ namespace DAL
         }//End list treatment method
 
         //Update
-        public static string Updatetreatment(VO_Treatment treatment)
+        public static string UpdateTreatment(VO_Treatment treatment)
         {
             string outputResult = "";
             int response = 0;
@@ -94,7 +94,7 @@ namespace DAL
         }//End update treatment method
 
         //Delete
-        public static string SP_Delete_treatment(int id)
+        public static string DeleteTreatment(int id)
         {
             string outputResult = "";
             int response = 0;

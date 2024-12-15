@@ -10,7 +10,7 @@ namespace DAL
 {
     public class DALMedicament
     {
-        public static string Createmedicament(VO_Medicament medicament)
+        public static string CreateMedicament(VO_Medicament medicament)
         {
             string outputResult = "";
             int response = 0;
@@ -64,7 +64,7 @@ namespace DAL
         }//End list medicament method
 
         //Update
-        public static string Updatemedicament(VO_Medicament medicament)
+        public static string UpdateMedicament(VO_Medicament medicament)
         {
             string outputResult = "";
             int response = 0;
@@ -94,7 +94,7 @@ namespace DAL
         }//End update medicament method
 
         //Delete
-        public static string SP_Delete_Medicament(int id)
+        public static string DeleteMedicament(int id)
         {
             string outputResult = "";
             int response = 0;

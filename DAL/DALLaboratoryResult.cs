@@ -94,7 +94,7 @@ namespace DAL
         }//End update labResult method
 
         //Delete
-        public static string SP_Delete_labResult(int id)
+        public static string DeleteLabResult(int id)
         {
             string outputResult = "";
             int response = 0;

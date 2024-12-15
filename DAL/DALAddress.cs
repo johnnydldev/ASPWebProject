@@ -97,7 +97,7 @@ namespace DAL
         }//End update address method
 
         //Delete
-        public static string SP_Delete_Address(int id)
+        public static string DeleteAddress(int id)
         {
             string outputResult = "";
             int response = 0;

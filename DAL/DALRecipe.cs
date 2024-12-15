@@ -72,7 +72,7 @@ namespace DAL
         }//End list address method
 
         //Update
-        public static string UpdateAddress(VO_Recipe recipe)
+        public static string UpdateRecipe(VO_Recipe recipe)
         {
             string outputResult = "";
             int response = 0;
@@ -108,7 +108,7 @@ namespace DAL
         }//End update recipe method
 
         //Delete
-        public static string SP_Delete_Address(int id)
+        public static string DeleteRecipe(int id)
         {
             string outputResult = "";
             int response = 0;
