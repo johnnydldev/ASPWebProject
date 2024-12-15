@@ -178,6 +178,15 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="View\Address\IndexAddress.aspx" />
+    <Content Include="View\Diagnostic\IndexDiagnostic.aspx" />
+    <Content Include="View\Doctor\IndexDoctor.aspx" />
+    <Content Include="View\Home.aspx" />
+    <Content Include="View\LabResult\IndexLabResult.aspx" />
+    <Content Include="View\Medicament\IndexMedicament.aspx" />
+    <Content Include="View\Patient\IndexPatient.aspx" />
+    <Content Include="View\Recipe\IndexRecipe.aspx" />
+    <Content Include="View\Treatment\IndexTreatment.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -230,6 +239,69 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Address\IndexAddress.aspx.cs">
+      <DependentUpon>IndexAddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Address\IndexAddress.aspx.designer.cs">
+      <DependentUpon>IndexAddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Diagnostic\IndexDiagnostic.aspx.cs">
+      <DependentUpon>IndexDiagnostic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Diagnostic\IndexDiagnostic.aspx.designer.cs">
+      <DependentUpon>IndexDiagnostic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Doctor\IndexDoctor.aspx.cs">
+      <DependentUpon>IndexDoctor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Doctor\IndexDoctor.aspx.designer.cs">
+      <DependentUpon>IndexDoctor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\LabResult\IndexLabResult.aspx.cs">
+      <DependentUpon>IndexLabResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\LabResult\IndexLabResult.aspx.designer.cs">
+      <DependentUpon>IndexLabResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Medicament\IndexMedicament.aspx.cs">
+      <DependentUpon>IndexMedicament.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Medicament\IndexMedicament.aspx.designer.cs">
+      <DependentUpon>IndexMedicament.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\IndexPatient.aspx.cs">
+      <DependentUpon>IndexPatient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Patient\IndexPatient.aspx.designer.cs">
+      <DependentUpon>IndexPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipe\IndexRecipe.aspx.cs">
+      <DependentUpon>IndexRecipe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Recipe\IndexRecipe.aspx.designer.cs">
+      <DependentUpon>IndexRecipe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Treatment\IndexTreatment.aspx.cs">
+      <DependentUpon>IndexTreatment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Treatment\IndexTreatment.aspx.designer.cs">
+      <DependentUpon>IndexTreatment.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
