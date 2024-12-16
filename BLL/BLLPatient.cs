@@ -12,7 +12,7 @@ namespace BLL
     {
 
         //Create
-        public static string CreatePatient(VO_Patient atient)
+        public static string CreatePatient(VO_Patient patient)
         {
             return DALPatient.CreatePatient(patient);
         }

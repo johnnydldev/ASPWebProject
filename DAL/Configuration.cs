@@ -9,7 +9,7 @@ namespace DAL
     public class Configuration
     {
         //Declaring and assign of string connection
-        static string _stringConnection = @"Data Source = DESKTOP-O21DSCR\SQLEXPRESS; Inital Catalog = HOSPITAL; Integrated Security = true;";
+        static string _stringConnection = @"Data Source = DESKTOP-O21DSCR\SQLEXPRESS; Initial Catalog = HOSPITAL; Integrated Security = true;";
 
         public static string GetStringConnection
         {
