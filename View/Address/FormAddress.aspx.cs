@@ -30,7 +30,9 @@ namespace AspWebProject.View.Address
                     int _id = Convert.ToInt32(Request.QueryString["Id"]);
                     
                     //Gettting the info according to the id specified
-                    VO_Address address = BLLAddress.ListAddresss("@IdAddress", _id)[0];
+                    VO_Address address = BLLAddress.GetAddressById(_id);
+
+                    Console.WriteLine("El id es: "+_id);
                     
                     //Validate that exist the record in the table, if isn't that return to form
                     if (address.IdAddress != 0)
@@ -42,6 +44,8 @@ namespace AspWebProject.View.Address
                         txtSuburb.Text = address.Suburb;
                         txtCity.Text = address.City;
                         txtState.Text = address.State;
+
+                        Console.WriteLine("El objeto es: "+ address);
                     }
                     else
                     {
@@ -49,6 +53,7 @@ namespace AspWebProject.View.Address
                         Response.Redirect("IndexAddress.aspx");
                     }
                 }
+
             }
         }//End load event
 
@@ -74,8 +79,10 @@ namespace AspWebProject.View.Address
                         title = "Ops...";
                         response = outputResult;
                         type = "warning";
-                        Response.Redirect("IndexAddress.aspx");
+                        
                     }
+
+                    HttpContext.Current.Response.Redirect("IndexAddress.aspx");
 
                 }
                 else
@@ -83,6 +90,7 @@ namespace AspWebProject.View.Address
                     //Update
                     address.IdAddress = int.Parse(Request.QueryString["Id"]);
                     outputResult = BLLAddress.UpdateAddress(address);
+                    HttpContext.Current.Response.Redirect("IndexAddress.aspx");
                 }
 
                 //Preparing the info to show the errors through the Seet Alert
@@ -106,7 +114,8 @@ namespace AspWebProject.View.Address
                 type = "error";
             }
             //sweet alert
-            SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType(), "/View/Address/IndexAddress.aspx");
+            SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType(), "/view/address/IndexAddress.aspx");
+
         }//End save event
 
 

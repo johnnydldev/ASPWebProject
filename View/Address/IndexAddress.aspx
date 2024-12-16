@@ -14,6 +14,7 @@
          </div>
 
          <div class="row">
+
              <asp:GridView ID="GVAddress" runat="server"
                  CssClass="table table-bordered table-striped table-condensed bg-info"
                  AutoGenerateColumns="false"
@@ -23,8 +24,11 @@
                  OnRowEditing="OnEditAddress"
                  OnRowUpdating="OnUpdateAddress"
                  OnRowCancelingEdit="OnCancelingEdit">
+                 
                  <%--arriba se generan los eventos "onrow"--%>
+                 
                  <Columns>
+
                      <asp:BoundField DataField="IdAddress" HeaderText="Id de dirección" ItemStyle-Width="50px" ReadOnly="true" />
 
                      <asp:BoundField DataField="street" HeaderText="Calle" ItemStyle-Width="85px" />
@@ -35,20 +39,20 @@
              
                      <asp:BoundField DataField="state" HeaderText="Estado" ItemStyle-Width="85px" />
 
-                     <asp:ButtonField ButtonType="Button" CommandName="Select" HeaderText="Ver información" Text="Ver Detalles" ControlStyle-CssClass="btn btn-success btn-xs" ItemStyle-Width="50px" />
+                     <asp:ButtonField CommandName="Select" HeaderText="Ver información" Text="Ver Detalles" ControlStyle-CssClass="btn btn-success btn-xs" ItemStyle-Width="50px" />
              
                      <asp:CommandField ButtonType="Button" HeaderText="Editar" ShowEditButton="true" ShowHeader="true" ControlStyle-CssClass="btn btn-secondary btn-xs" ItemStyle-Width="50px" />
              
                      <asp:CommandField ButtonType="Button" HeaderText="Borrar" ShowDeleteButton="true" ShowHeader="true" ControlStyle-CssClass="btn btn-danger btn-xs" ItemStyle-Width="50px" />
          
                  </Columns>
+
              </asp:GridView>
 
          </div>
 
-
    </div>
-    <!-- End content here -->
+   <!-- End content here -->
 
 
 </asp:Content>

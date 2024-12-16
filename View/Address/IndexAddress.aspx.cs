@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using VO;
 
 namespace AspWebProject.View.Address
 {
@@ -74,7 +75,7 @@ namespace AspWebProject.View.Address
                 int varIndex = int.Parse(e.CommandArgument.ToString());
                 
                 //Got the id of address accordint to the row selected early
-                string id = GVAddress.DataKeys[varIndex].Values["IdAddress"].ToString();
+                string id = GVAddress.Rows[varIndex].Cells[0].Text;
                 
                 //Redirecting to the form address with values of address selected
                 Response.Redirect($"FormAddress.aspx?Id={id}");

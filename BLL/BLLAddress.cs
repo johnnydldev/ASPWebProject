@@ -30,6 +30,12 @@ namespace BLL
             return lista_vacia;
         }*/
 
+
+        public static VO_Address GetAddressById(int id)
+        {
+            return DALAddress.GetAddressById(id);
+        }
+
         //Update
         public static string UpdateAddress(VO_Address address)
         {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +64,58 @@ namespace DAL
                 Console.WriteLine("Ha ocurrido : " + ex.ToString());
                 throw;
             }
+
+        }//End list address method
+
+        public static VO_Address GetAddressById(int id)
+        {
+            VO_Address address = new VO_Address();
+
+            using (SqlConnection objConnection = new SqlConnection(Configuration.GetStringConnection))
+            {
+                SqlDataReader reader;
+                try
+                {
+
+                    SqlCommand cmd = new SqlCommand("SP_Get_Address_By_Id", objConnection);
+                    cmd.Parameters.AddWithValue("idAddress", id);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    objConnection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            address = new VO_Address
+                            {
+                                IdAddress = Convert.ToInt32(reader["idAddress"].ToString()),
+                                Street = reader["street"].ToString(),
+                                Suburb = reader["suburb"].ToString(),
+                                City = reader["city"].ToString(),
+                                State = reader["state"].ToString()
+
+                            };
+
+                            //End adding information address
+
+                        }
+                    }//End information reading
+
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.ToString());
+                    address = new VO_Address();
+                }
+
+
+            }//End using of stringConnection
+
+
+            return address;
 
         }//End list address method
 
