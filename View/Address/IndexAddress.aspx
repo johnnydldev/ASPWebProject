@@ -41,8 +41,8 @@
 
                      <asp:ButtonField CommandName="Select" HeaderText="Ver información" Text="Ver Detalles" ControlStyle-CssClass="btn btn-success btn-xs" ItemStyle-Width="50px" />
              
-                     <asp:CommandField ButtonType="Button" HeaderText="Editar" ShowEditButton="true" ShowHeader="true" ControlStyle-CssClass="btn btn-secondary btn-xs" ItemStyle-Width="50px" />
-             
+                     <asp:ButtonField CommandName="Edit" HeaderText="Editar" Text="Editar" ControlStyle-CssClass="btn btn-warning btn-xs" ItemStyle-Width="50px" />
+                     
                      <asp:CommandField ButtonType="Button" HeaderText="Borrar" ShowDeleteButton="true" ShowHeader="true" ControlStyle-CssClass="btn btn-danger btn-xs" ItemStyle-Width="50px" />
          
                  </Columns>

@@ -78,7 +78,20 @@ namespace AspWebProject.View.Address
                 string id = GVAddress.Rows[varIndex].Cells[0].Text;
                 
                 //Redirecting to the form address with values of address selected
-                Response.Redirect($"FormAddress.aspx?Id={id}");
+                Response.Redirect($"DetailsAddress.aspx?Id={id}");
+            }else if (e.CommandName == "Edit")
+            {
+
+
+                int varIndex = int.Parse(e.CommandArgument.ToString());
+
+                //Got the id of address accordint to the row selected early
+                string idAddress = GVAddress.Rows[varIndex].Cells[0].Text;
+
+                //string idAddress = row.Cells[0].Text;
+
+                //Redirecting to the form address with values of address selected
+                Response.Redirect($"FormAddress.aspx?Id={idAddress}");
             }
 
         }//End load page event
