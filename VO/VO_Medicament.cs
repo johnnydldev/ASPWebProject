@@ -23,10 +23,6 @@ namespace VO
 
         public VO_Medicament()
         {
-            idMedicament = 0;
-            nameMedicament = string.Empty;
-            dose = string.Empty;
-            useInstruction = string.Empty;
         }//End constructor method
 
         public VO_Medicament(DataRow row)

@@ -26,10 +26,10 @@
                     <asp:TextBox ID="txtCity" runat="server" CssClass="form-control"></asp:TextBox>
 
                     <asp:Label ID="lblState" runat="server" Text="Estado" CssClass="mt-3"></asp:Label>
-                    
                     <asp:TextBox ID="txtState" runat="server" CssClass="form-control"></asp:TextBox>
 
-                    <asp:Button ID="btnSave" CssClass="btn btn-primary mt-3 mb-5" runat="server" Text="Guardar" OnClick="btnSaveClick" />
+                    <asp:Button ID="btnSave" CssClass="btn btn-success mt-3 mb-5" runat="server" Text="Guardar" OnClick="btnSaveClick" />
+                    <asp:Button ID="btnBack" CssClass="btn btn-primary mt-3 mb-5" runat="server" Text="Regresar" OnClick="btnBackClick" />
 
                 </div>
 

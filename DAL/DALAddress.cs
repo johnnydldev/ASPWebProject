@@ -117,7 +117,7 @@ namespace DAL
 
             return address;
 
-        }//End list address method
+        }//End address method
 
         //Update
         public static string UpdateAddress(VO_Address address)

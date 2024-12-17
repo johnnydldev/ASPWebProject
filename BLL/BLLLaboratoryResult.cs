@@ -53,6 +53,10 @@ namespace BLL
 
         }//End delete method
 
+        public static VO_Laboratory_Result GetLaboratoryResultById(int id)
+        {
+            return DALLaboratoryResult.GetLaboratoryResultById(id);
+        }//End get laboratory by id
 
 
     }//End lab result class

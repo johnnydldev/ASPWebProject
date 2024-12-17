@@ -17,9 +17,9 @@ namespace BLL
             return DALMedicament.CreateMedicament(medicament);
         }
         //Read
-        public static List<VO_Medicament> ListMedicaments(params object[] parameters)
+        public static List<VO_Medicament> ListMedicaments()
         {
-            return DALMedicament.ListMedicament(parameters);
+            return DALMedicament.ListMedicament();
         }
 
         /* Method to list the results by patient
@@ -43,6 +43,12 @@ namespace BLL
             return DALMedicament.DeleteMedicament(id);
 
         }//End delete method
+
+        public static VO_Medicament GetMedicamentById(int id)
+        {
+            return DALMedicament.GetMedicamentById(id);
+        }//End get medicament by id
+
 
 
     }//End medicament class

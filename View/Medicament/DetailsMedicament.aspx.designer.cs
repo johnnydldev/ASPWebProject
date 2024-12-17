@@ -11,25 +11,43 @@ namespace AspWebProject.View.Medicament
 {
 
 
-    public partial class IndexMedicament
+    public partial class DetailsMedicament
     {
 
         /// <summary>
-        /// Control createMedicament.
+        /// Control lblNameMedicament.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button createMedicament;
+        protected global::System.Web.UI.WebControls.Label lblNameMedicament;
 
         /// <summary>
-        /// Control GVMedicaments.
+        /// Control dose.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVMedicaments;
+        protected global::System.Web.UI.WebControls.Label dose;
+
+        /// <summary>
+        /// Control useInstruction.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label useInstruction;
+
+        /// <summary>
+        /// Control btnBack.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBack;
     }
 }

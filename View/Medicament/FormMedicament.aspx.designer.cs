@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AspWebProject.View.Address
+namespace AspWebProject.View.Medicament
 {
 
 
-    public partial class FormAddress
+    public partial class FormMedicament
     {
 
         /// <summary>
@@ -33,76 +33,58 @@ namespace AspWebProject.View.Address
         protected global::System.Web.UI.WebControls.Label subTitle;
 
         /// <summary>
-        /// Control lblStreet.
+        /// Control lblNameMedicament.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStreet;
+        protected global::System.Web.UI.WebControls.Label lblNameMedicament;
 
         /// <summary>
-        /// Control txtStreet.
+        /// Control txtNameMedicament.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStreet;
+        protected global::System.Web.UI.WebControls.TextBox txtNameMedicament;
 
         /// <summary>
-        /// Control lblSuburb.
+        /// Control lblDose.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSuburb;
+        protected global::System.Web.UI.WebControls.Label lblDose;
 
         /// <summary>
-        /// Control txtSuburb.
+        /// Control txtDose.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSuburb;
+        protected global::System.Web.UI.WebControls.TextBox txtDose;
 
         /// <summary>
-        /// Control lblCity.
+        /// Control lblUseInstruction.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCity;
+        protected global::System.Web.UI.WebControls.Label lblUseInstruction;
 
         /// <summary>
-        /// Control txtCity.
+        /// Control txtUseInstruction.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCity;
-
-        /// <summary>
-        /// Control lblState.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblState;
-
-        /// <summary>
-        /// Control txtState.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtState;
+        protected global::System.Web.UI.WebControls.TextBox txtUseInstruction;
 
         /// <summary>
         /// Control btnSave.
@@ -112,14 +94,5 @@ namespace AspWebProject.View.Address
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
-
-        /// <summary>
-        /// Control btnBack.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack;
     }
 }

@@ -11,25 +11,43 @@ namespace AspWebProject.View.LabResult
 {
 
 
-    public partial class IndexLabResult
+    public partial class DetailsLabResult
     {
 
         /// <summary>
-        /// Control createLabResult.
+        /// Control lblTest.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button createLabResult;
+        protected global::System.Web.UI.WebControls.Label lblTest;
 
         /// <summary>
-        /// Control GVLabResults.
+        /// Control result.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVLabResults;
+        protected global::System.Web.UI.WebControls.Label result;
+
+        /// <summary>
+        /// Control dateDone.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dateDone;
+
+        /// <summary>
+        /// Control btnBack.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBack;
     }
 }

@@ -181,13 +181,27 @@
     <Content Include="View\Address\DetailsAddress.aspx" />
     <Content Include="View\Address\FormAddress.aspx" />
     <Content Include="View\Address\IndexAddress.aspx" />
+    <Content Include="View\Diagnostic\DetailsDiagnostic.aspx" />
+    <Content Include="View\Diagnostic\FormDiagnostic.aspx" />
     <Content Include="View\Diagnostic\IndexDiagnostic.aspx" />
+    <Content Include="View\Doctor\DetailsDoctor.aspx" />
+    <Content Include="View\Doctor\FormDoctor.aspx" />
     <Content Include="View\Doctor\IndexDoctor.aspx" />
     <Content Include="View\Home.aspx" />
+    <Content Include="View\LabResult\DetailsLabResult.aspx" />
+    <Content Include="View\LabResult\FormLabResult.aspx" />
     <Content Include="View\LabResult\IndexLabResult.aspx" />
+    <Content Include="View\Medicament\DetailsMedicament.aspx" />
+    <Content Include="View\Medicament\FormMedicament.aspx" />
     <Content Include="View\Medicament\IndexMedicament.aspx" />
+    <Content Include="View\Patient\DetailsPatient.aspx" />
+    <Content Include="View\Patient\FormPatient.aspx" />
     <Content Include="View\Patient\IndexPatient.aspx" />
+    <Content Include="View\Recipe\DetailsRecipe.aspx" />
+    <Content Include="View\Recipe\FormRecipe.aspx" />
     <Content Include="View\Recipe\IndexRecipe.aspx" />
+    <Content Include="View\Treatment\DetailsTreatment.aspx" />
+    <Content Include="View\Treatment\FormTreatment.aspx" />
     <Content Include="View\Treatment\IndexTreatment.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -264,12 +278,40 @@
     <Compile Include="View\Address\IndexAddress.aspx.designer.cs">
       <DependentUpon>IndexAddress.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Diagnostic\DetailsDiagnostic.aspx.cs">
+      <DependentUpon>DetailsDiagnostic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Diagnostic\DetailsDiagnostic.aspx.designer.cs">
+      <DependentUpon>DetailsDiagnostic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Diagnostic\FormDiagnostic.aspx.cs">
+      <DependentUpon>FormDiagnostic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Diagnostic\FormDiagnostic.aspx.designer.cs">
+      <DependentUpon>FormDiagnostic.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Diagnostic\IndexDiagnostic.aspx.cs">
       <DependentUpon>IndexDiagnostic.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\Diagnostic\IndexDiagnostic.aspx.designer.cs">
       <DependentUpon>IndexDiagnostic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Doctor\DetailsDoctor.aspx.cs">
+      <DependentUpon>DetailsDoctor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Doctor\DetailsDoctor.aspx.designer.cs">
+      <DependentUpon>DetailsDoctor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Doctor\FormDoctor.aspx.cs">
+      <DependentUpon>FormDoctor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Doctor\FormDoctor.aspx.designer.cs">
+      <DependentUpon>FormDoctor.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Doctor\IndexDoctor.aspx.cs">
       <DependentUpon>IndexDoctor.aspx</DependentUpon>
@@ -285,12 +327,40 @@
     <Compile Include="View\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\LabResult\DetailsLabResult.aspx.cs">
+      <DependentUpon>DetailsLabResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\LabResult\DetailsLabResult.aspx.designer.cs">
+      <DependentUpon>DetailsLabResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\LabResult\FormLabResult.aspx.cs">
+      <DependentUpon>FormLabResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\LabResult\FormLabResult.aspx.designer.cs">
+      <DependentUpon>FormLabResult.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\LabResult\IndexLabResult.aspx.cs">
       <DependentUpon>IndexLabResult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\LabResult\IndexLabResult.aspx.designer.cs">
       <DependentUpon>IndexLabResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Medicament\DetailsMedicament.aspx.cs">
+      <DependentUpon>DetailsMedicament.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Medicament\DetailsMedicament.aspx.designer.cs">
+      <DependentUpon>DetailsMedicament.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Medicament\FormMedicament.aspx.cs">
+      <DependentUpon>FormMedicament.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Medicament\FormMedicament.aspx.designer.cs">
+      <DependentUpon>FormMedicament.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Medicament\IndexMedicament.aspx.cs">
       <DependentUpon>IndexMedicament.aspx</DependentUpon>
@@ -299,6 +369,20 @@
     <Compile Include="View\Medicament\IndexMedicament.aspx.designer.cs">
       <DependentUpon>IndexMedicament.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Patient\DetailsPatient.aspx.cs">
+      <DependentUpon>DetailsPatient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Patient\DetailsPatient.aspx.designer.cs">
+      <DependentUpon>DetailsPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\FormPatient.aspx.cs">
+      <DependentUpon>FormPatient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Patient\FormPatient.aspx.designer.cs">
+      <DependentUpon>FormPatient.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Patient\IndexPatient.aspx.cs">
       <DependentUpon>IndexPatient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -306,12 +390,40 @@
     <Compile Include="View\Patient\IndexPatient.aspx.designer.cs">
       <DependentUpon>IndexPatient.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Recipe\DetailsRecipe.aspx.cs">
+      <DependentUpon>DetailsRecipe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Recipe\DetailsRecipe.aspx.designer.cs">
+      <DependentUpon>DetailsRecipe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipe\FormRecipe.aspx.cs">
+      <DependentUpon>FormRecipe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Recipe\FormRecipe.aspx.designer.cs">
+      <DependentUpon>FormRecipe.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Recipe\IndexRecipe.aspx.cs">
       <DependentUpon>IndexRecipe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\Recipe\IndexRecipe.aspx.designer.cs">
       <DependentUpon>IndexRecipe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Treatment\DetailsTreatment.aspx.cs">
+      <DependentUpon>DetailsTreatment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Treatment\DetailsTreatment.aspx.designer.cs">
+      <DependentUpon>DetailsTreatment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Treatment\FormTreatment.aspx.cs">
+      <DependentUpon>FormTreatment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Treatment\FormTreatment.aspx.designer.cs">
+      <DependentUpon>FormTreatment.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Treatment\IndexTreatment.aspx.cs">
       <DependentUpon>IndexTreatment.aspx</DependentUpon>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using VO;
@@ -40,26 +42,53 @@ namespace DAL
         }//End create medicament method
 
         //Read
-        public static List<VO_Medicament> ListMedicament(params object[] parameters)
+        public static List<VO_Medicament> ListMedicament()
         {
             //creo una lista de objetox VO
             List<VO_Medicament> list = new List<VO_Medicament>();
-            try
+
+            using (SqlConnection objConnection = new SqlConnection(Configuration.GetStringConnection))
             {
-                //creo un DataSet el cuál recibirá lo que devuelva la ejecución del método "execute_DataSet" de la clase "metodos_datos"
-                DataSet dsmedicament = DataGetObject.executeDataSet("SP_List_Medicament", parameters);
-                //recorro cada renglón existente de nuestro ds creando objetos del tipo VO y añadiendolos a la lista
-                foreach (DataRow dr in dsmedicament.Tables[0].Rows)
+                SqlDataReader reader;
+                try
                 {
-                    list.Add(new VO_Medicament(dr));
+
+                    SqlCommand cmd = new SqlCommand("SP_List_medicaments", objConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    objConnection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new VO_Medicament
+                            {
+                                IdMedicament = Convert.ToInt32(reader["idMedicament"].ToString()),
+                                NameMedicament = reader["nameMedicament"].ToString(),
+                                Dose = reader["dose"].ToString(),
+                                UseInstruction = reader["useInstruction"].ToString()
+
+                            });
+
+                            //End adding information medicament
+
+                        }
+                    }//End information reading
+
                 }
-                return list;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ha ocurrido : " + ex.ToString());
-                throw;
-            }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.ToString());
+                    list = new List<VO_Medicament>();
+                }
+
+
+            }//End using of stringConnection
+
+            return list;
 
         }//End list medicament method
 
@@ -120,6 +149,56 @@ namespace DAL
             return outputResult;
         }//End delete medicament method
 
+        public static VO_Medicament GetMedicamentById(int id)
+        {
+            VO_Medicament medicament = new VO_Medicament();
+
+            using (SqlConnection objConnection = new SqlConnection(Configuration.GetStringConnection))
+            {
+                SqlDataReader reader;
+                try
+                {
+
+                    SqlCommand cmd = new SqlCommand("SP_Get_Medicament_By_Id", objConnection);
+                    cmd.Parameters.AddWithValue("idMedicament", id);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    objConnection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            medicament = new VO_Medicament
+                            {
+                                IdMedicament = Convert.ToInt32(reader["idMedicament"].ToString()),
+                                NameMedicament = reader["nameMedicament"].ToString(),
+                                Dose = reader["dose"].ToString(),
+                                UseInstruction = reader["useInstruction"].ToString()
+
+                            };
+
+                            //End adding information medicament
+
+                        }
+                    }//End information reading
+
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.ToString());
+                    medicament = new VO_Medicament();
+                }
+
+
+            }//End using of stringConnection
+
+
+            return medicament;
+
+        }//End list medicament method
 
 
     }//End medicament class
