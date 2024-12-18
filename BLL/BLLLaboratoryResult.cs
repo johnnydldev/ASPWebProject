@@ -43,9 +43,10 @@ namespace BLL
 
             VO_Laboratory_Result item = listLab.Where(x => x.IdLaboratoryResult == id).FirstOrDefault();
 
-            if (item.IdLaboratoryResult != 0)
+            VO_Diagnostic diagnostic = BLLDiagnostic.GetDiagnosticByLabResult(item.IdLaboratoryResult);
+            if (diagnostic.IdLaboratoryResult >= 1)
             {
-                return "El resultado de laboratorio esta vinculado a un paciente, no se puede eliminar ";
+                return "El resultado de laboratorio esta vinculado a un diagnostico, no se puede eliminar ";
             }
 
             return DALLaboratoryResult.DeleteLabResult(id);

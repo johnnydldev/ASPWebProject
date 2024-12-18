@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace VO
         private string lastName ;
         private string birthDate;
         private string telephone;
-        private int idAddress;
+        private VO_Address address;
 
         //Declaring of getters and setters
         public int IdDoctor { get => idDoctor; set => idDoctor = value; }
@@ -25,7 +26,7 @@ namespace VO
         public string LastName { get => lastName; set => lastName = value; }
         public string BirthDate { get => birthDate; set => birthDate = value; }
         public string Telephone { get => telephone; set => telephone = value; }
-        public int IdAddress { get => idAddress; set => idAddress = value; }
+        public VO_Address Address { get => address; set => address = value; }
 
 
         public VO_Doctor()
@@ -36,9 +37,8 @@ namespace VO
             lastName = string.Empty;
             birthDate = string.Empty;
             telephone = string.Empty;
-            idAddress = 0;
+            address = new VO_Address();
         }//End constructor method
-
 
         public VO_Doctor(DataRow row)
         {
@@ -48,7 +48,13 @@ namespace VO
             lastName = row["lastName"].ToString();
             birthDate = row["birthDate"].ToString();
             telephone = row["telephone"].ToString();
-            idAddress = int.Parse(row["idAddress"].ToString());
+            address = new VO_Address(){
+                IdAddress = int.Parse(row["idAddress"].ToString()),
+                Street = row["street"].ToString(),
+                Suburb = row["suburb"].ToString(),
+                City = row["city"].ToString(),
+                State = row["state"].ToString()
+            };
         }//End override constructor method
 
 

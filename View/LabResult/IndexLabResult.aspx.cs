@@ -37,7 +37,7 @@ namespace AspWebProject.View.LabResult
         protected void OnDeleteLabResult(object sender, GridViewDeleteEventArgs e)
         {
             //Got the id LabResult of row specified
-            int idLabResult = int.Parse(GVLabResults.DataKeys[e.RowIndex].Values["IdLabResult"].ToString());
+            int idLabResult = int.Parse(GVLabResults.DataKeys[e.RowIndex].Values["IdLaboratoryResult"].ToString());
 
             //Calling the delete LabResult method to get a response
             string response = BLLLaboratoryResult.DeleteLabResult(idLabResult);

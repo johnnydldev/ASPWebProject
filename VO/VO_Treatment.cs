@@ -13,20 +13,20 @@ namespace VO
         private int idTreatment;
         private string recommendTreatment;
         private string startedDate;
-        private int idMedicament;
+        private VO_Medicament medicament;
 
         //Declaring og getters and setters
         public int IdTreatment { get => idTreatment; set => idTreatment = value; }
         public string RecommendTreatment { get => recommendTreatment; set => recommendTreatment = value; }
         public string StartedDate { get => startedDate; set => startedDate = value; }
-        public int IdMedicament { get => idMedicament; set => idMedicament = value; }
+        public VO_Medicament Medicament { get => medicament; set => medicament = value; }
 
         public VO_Treatment()
         {
             idTreatment = 0;
             recommendTreatment = string.Empty;
             startedDate = string.Empty;
-            idMedicament = 0;
+            medicament = new VO_Medicament();
         }//End constructor method
 
         public VO_Treatment(DataRow row)
@@ -34,7 +34,13 @@ namespace VO
             idTreatment = int.Parse(row["idTreatment"].ToString());
             recommendTreatment = row["recommendTreatment"].ToString();
             startedDate = row["startedDate"].ToString();
-            idMedicament = int.Parse(row["idMedicament"].ToString());
+            medicament = new VO_Medicament()
+            {
+                IdMedicament = int.Parse(row["idMedicament"].ToString()),
+                NameMedicament = row["nameMedicament"].ToString(),
+                Dose = row["dose"].ToString(),
+                UseInstruction = row["useInstruction"].ToString()
+            };
         }//End override constructor method
 
 

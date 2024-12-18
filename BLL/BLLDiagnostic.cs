@@ -43,7 +43,12 @@ namespace BLL
 
         }//End delete method
 
+        public static VO_Diagnostic GetDiagnosticByLabResult(int id)
+        {
 
+            return DALDiagnostic.GetDiagnosticByLabResult(id);
+
+        }//End get diagnostic by lab method
 
 
     }//End diagnostic class

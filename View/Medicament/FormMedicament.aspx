@@ -23,10 +23,10 @@
                 <asp:TextBox ID="txtDose" runat="server" CssClass="form-control"></asp:TextBox>
 
                 <asp:Label ID="lblUseInstruction" runat="server" Text="Instrucciones de uso:" CssClass="mt-3"></asp:Label>
-                <asp:TextBox ID="txtUseInstruction" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtUseInstruction" runat="server" CssClass="form-control" TextMode="MultiLine" Style="width: 300px; height: 100px;"></asp:TextBox>
 
-               
-                <asp:Button ID="btnSave" CssClass="btn btn-primary mt-3 mb-5" runat="server" Text="Guardar" OnClick="btnSaveClick" />
+                <asp:Button ID="btnSave" CssClass="btn btn-success mt-3 mb-5" runat="server" Text="Guardar" OnClick="btnSaveClick" />
+                <asp:Button ID="btnBack" CssClass="btn btn-primary mt-3 mb-5" runat="server" Text="Regresar" OnClick="btnBackClick" />
 
             </div>
 

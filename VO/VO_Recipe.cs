@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace VO
         private string medicament;
         private string doctor;
         private string registerDate;
-        private int idPatience;
+        private VO_Patient patience;
 
         //Declaring of getters and setters
         public int IdRecipe { get => idRecipe; set => idRecipe = value; }
@@ -31,7 +32,7 @@ namespace VO
         public string Medicament { get => medicament; set => medicament = value; }
         public string Doctor { get => doctor; set => doctor = value; }
         public string RegisterDate { get => registerDate; set => registerDate = value; }
-        public int IdPatience { get => idPatience; set => idPatience = value; }
+        public VO_Patient Patience { get => patience; set => patience = value; }
 
 
 
@@ -46,7 +47,7 @@ namespace VO
             medicament = string.Empty;
             doctor = string.Empty;
             registerDate = string.Empty;
-            idPatience = 0;
+            patience = new VO_Patient();
 
         }//End constructor method
 
@@ -61,7 +62,15 @@ namespace VO
             medicament = row["medicament"].ToString();
             doctor = row["doctor"].ToString();
             registerDate = row["registerDate"].ToString();
-            idPatience = int.Parse(row["idPatience"].ToString());
+            patience = new VO_Patient()
+            {
+                IdPatient  = int.Parse(row["idPatient"].ToString()),
+                NamePatient = row["namePatient"].ToString(),
+                MiddleName = row["middleName"].ToString(),
+                LastName = row["lastName"].ToString(),
+                BirthDate = row["birthDate"].ToString(),
+                Telephone = row["telephone"].ToString()
+            };
         }//End override constructor method
 
 

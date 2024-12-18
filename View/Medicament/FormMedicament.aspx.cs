@@ -117,7 +117,10 @@ namespace AspWebProject.View.Medicament
 
         }//End save event
 
-
+        protected void btnBackClick(object sender, EventArgs e)
+        {
+            HttpContext.Current.Response.Redirect("IndexMedicament.aspx");
+        }
 
     }//End medicament class
 }//End namespace
