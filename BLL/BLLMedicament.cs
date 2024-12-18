@@ -37,17 +37,17 @@ namespace BLL
         }
 
         //Delete
-        public static string DeleteMedicament(int id)
+        public static string DeleteMedicament(int idMedicament)
         {
             
-            VO_Treatment treatment = BLLTreatment.GetTreatmentByMedicament(id);
+            VO_Treatment treatment = BLLTreatment.GetTreatmentByMedicamentId(idMedicament);
 
-            if (treatment.IdMedicament >= 1)
+            if (treatment.Medicament.IdMedicament >= 1)
             {
                 return "El resultado de medicamento esta vinculado a un tratamiento, no se puede eliminar ";
             }
 
-            return DALMedicament.DeleteMedicament(id);
+            return DALMedicament.DeleteMedicament(idMedicament);
 
         }//End delete method
 

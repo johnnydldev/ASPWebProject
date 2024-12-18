@@ -11,139 +11,265 @@ namespace DAL
 {
     public class DALDiagnostic
     {
-        public static string CreateDiagnostic(VO_Diagnostic diagnostic)
+        public static List<VO_Diagnostic> GetAllDiagnostics()
         {
-            string outputResult = "";
-            int response = 0;
+            List<VO_Diagnostic> diagnostic = new List<VO_Diagnostic>();
+
+            using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+            {
+                SqlDataReader reader;
+                try
+                {
+
+                    SqlCommand cmd = new SqlCommand("SP_List_Diagnostics", objConnection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    objConnection.Open();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            diagnostic.Add(new VO_Diagnostic()
+                            {
+                                IdDiagnostic = Convert.ToInt32(reader["idDiagnostic"].ToString()),
+                                MedicalCondition = reader["medicalCondition"].ToString(),
+                                Treatment = new VO_Treatment()
+                                {
+                                    IdTreatment = Convert.ToInt32(reader["idTreatment"].ToString()),
+                                    RecommendTreatment = reader["recommendTreatment"].ToString()
+                                },
+                                Doctor = new VO_Doctor()
+                                {
+                                    IdDoctor = Convert.ToInt32(reader["idDoctor"].ToString()),
+                                    NameDoctor = reader["nameDoctor"].ToString()
+                                },
+                                Patient = new VO_Patient()
+                                {
+                                    IdPatient = Convert.ToInt32(reader["idPatient"].ToString()),
+                                    NamePatient = reader["namePatient"].ToString()
+                                },
+                                LabResult = new VO_Laboratory_Result()
+                                {
+                                    IdLaboratoryResult = Convert.ToInt32(reader["idLaboratoryResult"].ToString()),
+                                    Test = reader["test"].ToString(),
+                                    ResultValue = reader["resultValue"].ToString(),
+                                    DateDone = reader["dateDone"].ToString()
+                                }
+
+
+                            });//End VO_Diagnostics listing
+
+                        }
+                    }//End information reading
+
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.ToString());
+                    diagnostic = new List<VO_Diagnostic>();
+                }
+
+
+            }//End using of stringConnection
+
+
+            return diagnostic;
+        }//End listing VO_Diagnostics
+
+        public static VO_Diagnostic GetById(int idDiagnostic)
+        {
+            VO_Diagnostic diagnostic = new VO_Diagnostic();
+
             try
             {
-                response = DataGetObject.executeNonQuery("SP_Create_Diagnostic",
-                    "medicalCondition", diagnostic.MedicalCondition,
-                    "registerDate", diagnostic.RegisterDate,
-                    "idTreatment", diagnostic.Treatment.IdTreatment,
-                    "idDoctor", diagnostic.Doctor.IdDoctor,
-                    "idPatient", diagnostic.Patient.IdPatient,
-                    "idLaboratoryResult", diagnostic.LabResult.IdLaboratoryResult
-                );
+                using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+                {
+                    SqlDataReader reader;
+                    SqlCommand cmd;
 
-                if (response != 0)
-                {
-                    outputResult = "Diagnostico registrado con éxito";
-                }
-                else
-                {
-                    outputResult = "Ha ocurrido un error";
-                }
-            }
-            catch (Exception e)
-            {
-                outputResult = "Error: " + e.Message;
-                outputResult = $"Error: {e.Message}";
-            }
-            return outputResult;
-        }//End create diagnostic method
+                    cmd = new SqlCommand("SP_Search_Diagnostic_By_Id", objConnection);
+                    cmd.Parameters.AddWithValue("idDiagnostic", idDiagnostic);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-        //Read
-        public static List<VO_Diagnostic> ListDiagnostics(params object[] parameters)
-        {
-            //creo una lista de objetox VO
-            List<VO_Diagnostic> list = new List<VO_Diagnostic>();
-            try
-            {
-                //creo un DataSet el cuál recibirá lo que devuelva la ejecución del método "execute_DataSet" de la clase "metodos_datos"
-                DataSet dsdiagnostic = DataGetObject.executeDataSet("SP_List_Diagnostic", parameters);
-                //recorro cada renglón existente de nuestro ds creando objetos del tipo VO y añadiendolos a la lista
-                foreach (DataRow dr in dsdiagnostic.Tables[0].Rows)
-                {
-                    list.Add(new VO_Diagnostic(dr));
+                    objConnection.Open();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            diagnostic = new VO_Diagnostic
+                            {
+                                IdDiagnostic = Convert.ToInt32(reader["idDiagnostic"].ToString()),
+                                MedicalCondition = reader["medicalCondition"].ToString(),
+                                Treatment = new VO_Treatment()
+                                {
+                                    IdTreatment = Convert.ToInt32(reader["idTreatment"].ToString()),
+                                    RecommendTreatment = reader["recommendTreatment"].ToString()
+                                },
+                                Doctor = new VO_Doctor()
+                                {
+                                    IdDoctor = Convert.ToInt32(reader["idDoctor"].ToString()),
+                                    NameDoctor = reader["nameDoctor"].ToString()
+                                },
+                                Patient = new VO_Patient()
+                                {
+                                    IdPatient = Convert.ToInt32(reader["idPatient"].ToString()),
+                                    NamePatient = reader["namePatient"].ToString()
+                                },
+                                LabResult = new VO_Laboratory_Result()
+                                {
+                                    IdLaboratoryResult = Convert.ToInt32(reader["idLaboratoryResult"].ToString()),
+                                    Test = reader["test"].ToString(),
+                                    ResultValue = reader["resultValue"].ToString(),
+                                    DateDone = reader["dateDone"].ToString()
+                                }
+
+                            };
+                        }
+                    }
                 }
-                return list;
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ha ocurrido : " + ex.ToString());
-                throw;
+                Console.WriteLine(ex.Message.ToString());
+                diagnostic = new VO_Diagnostic(); ;
             }
 
-        }//End list diagnostic method
+            return diagnostic;
+        }//End get VO_Diagnostic id
 
-        //Update
-        public static string UpdateDiagnostic(VO_Diagnostic diagnostic)
+
+        public static int CreateDiagnostic(VO_Diagnostic diagnostic)
         {
-            string outputResult = "";
-            int response = 0;
+            int diagnosticGenerated = 0;
+            string message = string.Empty;
+
             try
             {
-                response = DataGetObject.executeNonQuery("SP_Update_Diagnostic",
-                    "@idDiagnostic", diagnostic.IdDiagnostic,
-                    "@medicalCondition", diagnostic.MedicalCondition,
-                    "@registerDate", diagnostic.RegisterDate,
-                    "@idTreatment", diagnostic.IdTreatment,
-                    "@idDoctor", diagnostic.IdDoctor,
-                    "@idPatient", diagnostic.IdPatient,
-                    "@idLaboratoryResult", diagnostic.IdLaboratoryResult
-                );
+                using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+                {
+                    SqlCommand cmd = new SqlCommand("SP_Create_Patient", objConnection);
+                    cmd.Parameters.AddWithValue("medicalCondition", diagnostic.MedicalCondition);
+                    cmd.Parameters.AddWithValue("registerDate", diagnostic.RegisterDate);
+                    cmd.Parameters.AddWithValue("idTreatment", diagnostic.Treatment.IdTreatment);
+                    cmd.Parameters.AddWithValue("idDoctor", diagnostic.Doctor.IdDoctor);
+                    cmd.Parameters.AddWithValue("idPatient", diagnostic.Patient.IdPatient);
+                    cmd.Parameters.AddWithValue("idLaboratoryResult", diagnostic.LabResult.IdLaboratoryResult);
+                    cmd.Parameters.Add("response", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                if (response != 0)
-                {
-                    outputResult = "Diagnostico actualizado con éxito";
-                }
-                else
-                {
-                    outputResult = "Ha ocurrido un error";
+                    objConnection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    diagnosticGenerated = Convert.ToInt32(cmd.Parameters["response"].Value);
+
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                outputResult = $"Error: {e.Message}";
+                diagnosticGenerated = 0;
+                message = ex.ToString();
             }
-            return outputResult;
-        }//End update diagnostic method
 
-        //Delete
-        public static string DeleteDiagnostic(int id)
+            Console.WriteLine(message);
+
+            return diagnosticGenerated;
+        }//End create VO_Diagnostic
+
+        public static bool UpdateDiagnostic(VO_Diagnostic diagnostic)
         {
-            string outputResult = "";
-            int response = 0;
-            try
-            {
-                response = DataGetObject.executeNonQuery("SP_Delete_Diagnostic",
-                    "@idDiagnostic", id
-                    );
+            bool response = false;
+            string message = string.Empty;
 
-                if (response != 0)
-                {
-                    outputResult = "Diagnostico eliminado con éxito";
-                }
-                else
-                {
-                    outputResult = "Ha ocurrido un error";
-                }
-            }
-            catch (Exception e)
+            using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
             {
-                outputResult = $"Error: {e.Message}";
-            }
-            return outputResult;
-        }//End delete diagnostic method
-
-        public static VO_Diagnostic GetDiagnosticByLabResult(int idLabResult)
-        {
-            VO_Diagnostic diagnostic = new VO_Diagnostic();
-
-            using (SqlConnection objConnection = new SqlConnection(Configuration.GetStringConnection))
-            {
-                SqlDataReader reader;
                 try
                 {
-
-                    SqlCommand cmd = new SqlCommand("SP_Verify_LabResult_Linked_With_Diagnostic", objConnection);
-                    cmd.Parameters.AddWithValue("idLabResult", idLabResult);
+                    SqlCommand cmd = new SqlCommand("SP_Update_Patient", objConnection);
+                    cmd.Parameters.AddWithValue("idDiagnostic", diagnostic.IdDiagnostic);
+                    cmd.Parameters.AddWithValue("medicalCondition", diagnostic.MedicalCondition);
+                    cmd.Parameters.AddWithValue("registerDate", diagnostic.RegisterDate);
+                    cmd.Parameters.AddWithValue("idTreatment", diagnostic.Treatment.IdTreatment);
+                    cmd.Parameters.AddWithValue("idDoctor", diagnostic.Doctor.IdDoctor);
+                    cmd.Parameters.AddWithValue("idPatient", diagnostic.Patient.IdPatient);
+                    cmd.Parameters.AddWithValue("idLaboratoryResult", diagnostic.LabResult.IdLaboratoryResult);
+                    cmd.Parameters.Add("response", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 
 
                     objConnection.Open();
                     cmd.ExecuteNonQuery();
+
+                    response = Convert.ToBoolean(cmd.Parameters["response"].Value);
+
+                }
+                catch (Exception ex)
+                {
+                    response = false;
+                    message = ex.Message.ToString();
+                }
+            }
+
+            Console.WriteLine(message);
+
+            return response;
+
+        }//End edit VO_Diagnostic
+
+        public static bool DeleteDiagnostic(int idDiagnostic)
+        {
+            bool response = false;
+            string message = string.Empty;
+
+            try
+            {
+                using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+                {
+
+                    SqlCommand cmd = new SqlCommand("SP_Delete_Diagnostic", objConnection);
+                    cmd.Parameters.AddWithValue("idDiagnostic", idDiagnostic);
+                    cmd.Parameters.Add("response", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    objConnection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    response = Convert.ToBoolean(cmd.Parameters["response"].Value);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                response = false;
+                message = ex.Message;
+            }
+
+            Console.WriteLine(message);
+
+            return response;
+
+        }//End delete diagnostic
+
+        public static VO_Diagnostic GetByIdLab(int idLab)
+        {
+            VO_Diagnostic diagnostic = new VO_Diagnostic();
+
+            try
+            {
+                using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+                {
+                    SqlDataReader reader;
+                    SqlCommand cmd;
+
+                    cmd = new SqlCommand("SP_Verify_LabResult_Linked_With_Diagnostic", objConnection);
+                    cmd.Parameters.AddWithValue("idLabResult", idLab);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    objConnection.Open();
 
                     using (reader = cmd.ExecuteReader())
                     {
@@ -151,54 +277,62 @@ namespace DAL
                         {
                             diagnostic = new VO_Diagnostic
                             {
-                                IdDiagnostic = Convert.ToInt32(reader["IdDiagnostic"].ToString()),
-                                MedicalCondition = reader["MedicalCondition"].ToString(),
-                                RegisterDate = reader["RegisterDate"].ToString(),
-                                IdTreatment = Convert.ToInt32(reader["IdTreatment"].ToString()),
-                                IdDoctor = Convert.ToInt32(reader["IdDoctor"].ToString()),
-                                IdPatient = Convert.ToInt32(reader["IdPatient"].ToString()),
-                                IdLaboratoryResult = Convert.ToInt32(reader["idLaboratoryResult"].ToString())
+                                IdDiagnostic = Convert.ToInt32(reader["idDiagnostic"].ToString()),
+                                MedicalCondition = reader["medicalCondition"].ToString(),
+                                Treatment = new VO_Treatment()
+                                {
+                                    IdTreatment = Convert.ToInt32(reader["idTreatment"].ToString()),
+                                    RecommendTreatment = reader["recommendTreatment"].ToString()
+                                },
+                                Doctor = new VO_Doctor()
+                                {
+                                    IdDoctor = Convert.ToInt32(reader["idDoctor"].ToString()),
+                                    NameDoctor = reader["nameDoctor"].ToString()
+                                },
+                                Patient = new VO_Patient()
+                                {
+                                    IdPatient = Convert.ToInt32(reader["idPatient"].ToString()),
+                                    NamePatient = reader["namePatient"].ToString()
+                                },
+                                LabResult = new VO_Laboratory_Result()
+                                {
+                                    IdLaboratoryResult = Convert.ToInt32(reader["idLaboratoryResult"].ToString()),
+                                    Test = reader["test"].ToString(),
+                                    ResultValue = reader["resultValue"].ToString(),
+                                    DateDone = reader["dateDone"].ToString()
+                                }
 
                             };
-
-                            //End adding information LaboratoryResult
-
                         }
-                    }//End information reading
-
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex.ToString());
-                    diagnostic = null;
+                    }
                 }
 
-
-            }//End using of stringConnection
-
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+                diagnostic = new VO_Diagnostic();
+            }
 
             return diagnostic;
+        }//End get VO_Diagnostic id
 
-
-        }//End get diagnostic by lab
-
-        public static VO_Diagnostic GetDiagnosticByDoctor(int idDoctor)
+        public static VO_Diagnostic GetByIdDoctor(int idDoctor)
         {
             VO_Diagnostic diagnostic = new VO_Diagnostic();
 
-            using (SqlConnection objConnection = new SqlConnection(Configuration.GetStringConnection))
+            try
             {
-                SqlDataReader reader;
-                try
+                using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
                 {
+                    SqlDataReader reader;
+                    SqlCommand cmd;
 
-                    SqlCommand cmd = new SqlCommand("SP_Verify_Doctor_Linked_With_Diagnostic", objConnection);
+                    cmd = new SqlCommand("SP_Verify_Doctor_Linked_With_Diagnostic", objConnection);
                     cmd.Parameters.AddWithValue("idDoctor", idDoctor);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     objConnection.Open();
-                    cmd.ExecuteNonQuery();
 
                     using (reader = cmd.ExecuteReader())
                     {
@@ -206,36 +340,46 @@ namespace DAL
                         {
                             diagnostic = new VO_Diagnostic
                             {
-                                IdDiagnostic = Convert.ToInt32(reader["IdDiagnostic"].ToString()),
-                                MedicalCondition = reader["MedicalCondition"].ToString(),
-                                RegisterDate = reader["RegisterDate"].ToString(),
-                                IdTreatment = Convert.ToInt32(reader["IdTreatment"].ToString()),
-                                IdDoctor = Convert.ToInt32(reader["IdDoctor"].ToString()),
-                                IdPatient = Convert.ToInt32(reader["IdPatient"].ToString()),
-                                IdLaboratoryResult = Convert.ToInt32(reader["idLaboratoryResult"].ToString())
+                                IdDiagnostic = Convert.ToInt32(reader["idDiagnostic"].ToString()),
+                                MedicalCondition = reader["medicalCondition"].ToString(),
+                                Treatment = new VO_Treatment()
+                                {
+                                    IdTreatment = Convert.ToInt32(reader["idTreatment"].ToString()),
+                                    RecommendTreatment = reader["recommendTreatment"].ToString()
+                                },
+                                Doctor = new VO_Doctor()
+                                {
+                                    IdDoctor = Convert.ToInt32(reader["idDoctor"].ToString()),
+                                    NameDoctor = reader["nameDoctor"].ToString()
+                                },
+                                Patient = new VO_Patient()
+                                {
+                                    IdPatient = Convert.ToInt32(reader["idPatient"].ToString()),
+                                    NamePatient = reader["namePatient"].ToString()
+                                },
+                                LabResult = new VO_Laboratory_Result()
+                                {
+                                    IdLaboratoryResult = Convert.ToInt32(reader["idLaboratoryResult"].ToString()),
+                                    Test = reader["test"].ToString(),
+                                    ResultValue = reader["resultValue"].ToString(),
+                                    DateDone = reader["dateDone"].ToString()
+                                }
 
                             };
-
-                            //End adding information LaboratoryResult
-
                         }
-                    }//End information reading
-
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex.ToString());
-                    diagnostic = null;
+                    }
                 }
 
-
-            }//End using of stringConnection
-
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+                diagnostic = new VO_Diagnostic();
+            }
 
             return diagnostic;
+        }//End get VO_Diagnostic id
 
-
-        }//End get diagnostic by doctor
 
     }//End diagnostic class
 }//End namespace

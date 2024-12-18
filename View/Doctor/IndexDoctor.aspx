@@ -15,7 +15,7 @@
 
       <div class="row">
 
-          <asp:GridView ID="GVDoctor" runat="server"
+          <asp:GridView ID="GVDoctors" runat="server"
               CssClass="table table-bordered table-striped table-condensed bg-info"
               AutoGenerateColumns="false"
               DataKeyNames="IdDoctor"

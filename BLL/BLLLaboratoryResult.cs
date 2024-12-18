@@ -37,19 +37,16 @@ namespace BLL
         }
 
         //Delete
-        public static string DeleteLabResult(int id)
+        public static string DeleteLabResult(int idLab)
         {
-            List<VO_Laboratory_Result> listLab = BLLLaboratoryResult.ListLabResults();
-
-            VO_Laboratory_Result item = listLab.Where(x => x.IdLaboratoryResult == id).FirstOrDefault();
-
-            VO_Diagnostic diagnostic = BLLDiagnostic.GetDiagnosticByLabResult(item.IdLaboratoryResult);
-            if (diagnostic.IdLaboratoryResult >= 1)
+            VO_Diagnostic diagnostic = BLLDiagnostic.GetDiagnosticByLabId(idLab);
+            
+            if (diagnostic.LabResult.IdLaboratoryResult >= 1)
             {
                 return "El resultado de laboratorio esta vinculado a un diagnostico, no se puede eliminar ";
             }
 
-            return DALLaboratoryResult.DeleteLabResult(id);
+            return DALLaboratoryResult.DeleteLabResult(idLab);
 
 
         }//End delete method

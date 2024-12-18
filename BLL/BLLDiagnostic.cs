@@ -11,14 +11,14 @@ namespace BLL
     public class BLLDiagnostic
     {
         //Create
-        public static string CreateDiagnostic(VO_Diagnostic diagnostic)
+        public static int CreateDiagnostic(VO_Diagnostic diagnostic)
         {
             return DALDiagnostic.CreateDiagnostic(diagnostic);
         }
         //Read
-        public static List<VO_Diagnostic> ListDiagnostics(params object[] parameters)
+        public static List<VO_Diagnostic> GetAllDiagnostics()
         {
-            return DALDiagnostic.ListDiagnostics(parameters);
+            return DALDiagnostic.GetAllDiagnostics();
         }
 
         /* Method to list the results by patient
@@ -30,23 +30,31 @@ namespace BLL
         }*/
 
         //Update
-        public static string UpdateDiagnostic(VO_Diagnostic diagnostic)
+        public static bool UpdateDiagnostic(VO_Diagnostic diagnostic)
         {
             return DALDiagnostic.UpdateDiagnostic(diagnostic);
         }
 
         //Delete
-        public static string DeleteDiagnostic(int id)
+        public static bool DeleteDiagnostic(int id)
         {
 
             return DALDiagnostic.DeleteDiagnostic(id);
 
         }//End delete method
 
-        public static VO_Diagnostic GetDiagnosticByLabResult(int id)
+        public static VO_Diagnostic GetDiagnosticByLabId(int id)
         {
 
-            return DALDiagnostic.GetDiagnosticByLabResult(id);
+            return DALDiagnostic.GetByIdLab(id);
+
+        }//End get diagnostic by lab method
+
+
+        public static VO_Diagnostic GetDiagnosticByDoctorId(int idDoctor)
+        {
+
+            return DALDiagnostic.GetByIdDoctor(idDoctor);
 
         }//End get diagnostic by lab method
 

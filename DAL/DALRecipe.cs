@@ -63,7 +63,7 @@ namespace DAL
             return allVO_Recipes;
         }//End listing all VO_Recipees
 
-        public VO_Recipe GetById(int idRecipe)
+        public static VO_Recipe GetById(int idRecipe)
         {
             VO_Recipe recipe = new VO_Recipe();
             string message;
@@ -124,7 +124,7 @@ namespace DAL
         }//End get VO_Recipe id
 
 
-        public int create(VO_Recipe recipe)
+        public static int CreateRecipe(VO_Recipe recipe)
         {
             int generatedResponse = 0;
 

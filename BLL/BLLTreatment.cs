@@ -49,5 +49,15 @@ namespace BLL
 
         }//End get treatment method
 
+        
+
+        public static VO_Treatment GetTreatmentByMedicamentId(int idMedicament)
+        {
+            return DALTreatment.GetTreatmentByMedicamentId(idMedicament);
+
+        }//End get treatment method
+
+
+
     }//End treatment class
 }//End namespace

@@ -277,5 +277,61 @@ namespace DAL
 
         }//End get by id treatment
 
+        public static VO_Treatment GetTreatmentByMedicamentId(int idMedicament)
+        {
+            VO_Treatment treatment = new VO_Treatment();
+            bool response = false;
+            string message = string.Empty;
+
+            try
+            {
+                using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+                {
+                    SqlDataReader reader;
+
+                    SqlCommand cmd = new SqlCommand("SP_Verify_Medicament_Linked_With_Treatment", objConnection);
+                    cmd.Parameters.AddWithValue("idMedicament", idMedicament);
+                    cmd.Parameters.Add("response", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    objConnection.Open();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            treatment = new VO_Treatment
+                            {
+                                IdTreatment = Convert.ToInt32(reader["idTreatment"].ToString()),
+                                RecommendTreatment = reader["recommendTreatment"].ToString(),
+                                StartedDate = reader["startedDate"].ToString(),
+                                Medicament = new VO_Medicament()
+                                {
+                                    IdMedicament = Convert.ToInt32(reader["idMedicament"].ToString()),
+                                    NameMedicament = reader["nameMedicament"].ToString(),
+                                    Dose = reader["dose"].ToString(),
+                                    UseInstruction = reader["useInstruction"].ToString()
+
+                                }
+                            };
+                        }
+                    }
+
+                    response = Convert.ToBoolean(cmd.Parameters["response"].Value);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                response = false;
+                message = ex.Message;
+            }
+
+            Console.WriteLine(message);
+
+            return treatment;
+
+        }//End get treatment by id medicament
+
     }//End treatment class
 }//End namespace

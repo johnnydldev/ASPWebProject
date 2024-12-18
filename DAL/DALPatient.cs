@@ -232,7 +232,7 @@ namespace DAL
 
             return response;
 
-        }//End delete doctor
+        }//End delete patient
 
     }//End patient class
 }//End namespace

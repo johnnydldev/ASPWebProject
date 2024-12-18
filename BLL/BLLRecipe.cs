@@ -11,40 +11,21 @@ namespace BLL
     public class BLLRecipe
     {
         //Create
-        public static string CreateRecipe(VO_Recipe recipe)
+        public static int CreateRecipe(VO_Recipe recipe)
         {
             return DALRecipe.CreateRecipe(recipe);
         }
         //Read
-        public static List<VO_Recipe> ListRecipes(params object[] parameters)
+        public static List<VO_Recipe> GetAllRecipes()
         {
-            return DALRecipe.ListRecipes(parameters);
+            return DALRecipe.GetAllRecipes();
         }
-
-        /* Method to list the results by patient
-        public static List<VO_Recipe> ListRecipeByPatient(int idPatient)
-        {
-            List<VO_Recipe> listPatient = DAL_Camiones.Get_Camiones();
-
-            return lista_vacia;
-        }*/
 
         //Update
-        public static string UpdateRecipe(VO_Recipe recipe)
+        public static VO_Recipe GetByIdRecipe(int idRecipe)
         {
-            return DALRecipe.UpdateRecipe(recipe);
+            return DALRecipe.GetById(idRecipe);
         }
-
-        //Delete
-        public static string DeleteRecipe(int id)
-        {
-
-            return DALRecipe.DeleteRecipe(id);
-
-        }//End delete method
-
-
-
 
     }//End recipe class
 }//End namespace
