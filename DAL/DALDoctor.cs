@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using VO;
@@ -11,123 +13,228 @@ namespace DAL
 {
     public class DALDoctor
     {
-        public static string CreateDoctor(VO_Doctor doctor)
+        public static List<VO_Doctor> GetAllDoctors()
         {
-            string outputResult = "";
-            int response = 0;
+            List<VO_Doctor> doctors = new List<VO_Doctor>();
+
+            using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+            {
+                SqlDataReader reader;
+                try
+                {
+
+                    SqlCommand cmd = new SqlCommand("SP_List_Doctors", objConnection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    objConnection.Open();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            doctors.Add(new VO_Doctor()
+                            {
+                               IdDoctor = Convert.ToInt32(reader["idDoctor"].ToString()),
+                               NameDoctor = reader["nameDoctor"].ToString(),
+                               MiddleName = reader["middleName"].ToString(),
+                               LastName = reader["lastName"].ToString(),
+                               BirthDate = reader["birthDate"].ToString(),
+                               Telephone = reader["telephone"].ToString(),
+                               Address = new VO_Address()
+                               {
+                                   IdAddress = Convert.ToInt32(reader["idAddress"].ToString()),
+                                   Street = reader["street"].ToString(),
+                                   Suburb = reader["suburb"].ToString(),
+                                   City = reader["city"].ToString(),
+                                   State = reader["state"].ToString()
+
+                               }
+
+                            });//End VO_Doctors listing
+
+                        }
+                    }//End information reading
+
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.ToString());
+                    doctors = new List<VO_Doctor>();
+                }
+
+
+            }//End using of stringConnection
+
+
+            return doctors;
+        }//End listing VO_Doctors
+
+        public static VO_Doctor GetById(int idDoctor)
+        {
+            VO_Doctor doctor = new VO_Doctor();
+
             try
             {
-                response = DataGetObject.executeNonQuery("SP_Create_Doctor",
-                    "@nameDoctor", doctor.NameDoctor,
-                    "@middleName", doctor.MiddleName,
-                    "@lastName", doctor.LastName,
-                    "@birthDate", doctor.BirthDate,
-                    "@telephone", doctor.Telephone,
-                    "@idAddress", doctor.IdAddress
-                    );
+                using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+                {
+                    SqlDataReader reader;
+                    SqlCommand cmd;
 
-                if (response != 0)
-                {
-                    outputResult = "Doctor registrado con éxito";
-                }
-                else
-                {
-                    outputResult = "Ha ocurrido un error";
-                }
-            }
-            catch (Exception e)
-            {
-                outputResult = "Error: " + e.Message;
-                outputResult = $"Error: {e.Message}";
-            }
-            return outputResult;
-        }//End create doctor method
+                    cmd = new SqlCommand("SP_Search_Doctor_By_Id", objConnection);
+                    cmd.Parameters.AddWithValue("idDoctor", idDoctor);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-        //Read
-        public static List<VO_Doctor> ListDoctors(params object[] parameters)
-        {
-            //creo una lista de objetox VO
-            List<VO_Doctor> list = new List<VO_Doctor>();
-            try
-            {
-                //creo un DataSet el cuál recibirá lo que devuelva la ejecución del método "execute_DataSet" de la clase "metodos_datos"
-                DataSet dsDoctor = DataGetObject.executeDataSet("SP_List_Doctor", parameters);
-                //recorro cada renglón existente de nuestro ds creando objetos del tipo VO y añadiendolos a la lista
-                foreach (DataRow dr in dsDoctor.Tables[0].Rows)
-                {
-                    list.Add(new VO_Doctor(dr));
+                    objConnection.Open();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            doctor = new VO_Doctor
+                            {
+                                IdDoctor = Convert.ToInt32(reader["idDoctor"].ToString()),
+                                NameDoctor = reader["nameDoctor"].ToString(),
+                                MiddleName = reader["middleName"].ToString(),
+                                LastName = reader["lastName"].ToString(),
+                                BirthDate = reader["birthDate"].ToString(),
+                                Telephone = reader["telephone"].ToString(),
+                                Address = new VO_Address()
+                                {
+                                    IdAddress = Convert.ToInt32(reader["idAddress"].ToString()),
+                                    Street = reader["street"].ToString(),
+                                    Suburb = reader["suburb"].ToString(),
+                                    City = reader["city"].ToString(),
+                                    State = reader["state"].ToString()
+
+                                }
+                            };
+                        }
+                    }
                 }
-                return list;
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ha ocurrido : " + ex.ToString());
-                throw;
+                Console.WriteLine(ex.Message.ToString());
+                doctor = new VO_Doctor(); ;
             }
 
-        }//End list doctor method
+            return doctor;
+        }//End get VO_Doctor id
 
-        //Update
-        public static string UpdateDoctor(VO_Doctor doctor)
+       
+        public static int CreateDoctor(VO_Doctor doctor)
         {
-            string outputResult = "";
-            int response = 0;
+            int doctorGenerated = 0;
+            string message = string.Empty;
+
             try
             {
-                response = DataGetObject.executeNonQuery("SP_Update_Doctor",
-                    "@idDoctor", doctor.IdDoctor,
-                    "@nameDoctor", doctor.NameDoctor,
-                    "@middleName", doctor.MiddleName,
-                    "@lastName", doctor.LastName,
-                    "@birthDate", doctor.BirthDate,
-                    "@telephone", doctor.Telephone,
-                    "@idAddress", doctor.IdAddress
-                    );
+                using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+                {
+                    SqlCommand cmd = new SqlCommand("SP_Create_Doctor", objConnection);
+                    cmd.Parameters.AddWithValue("nameDoctor", doctor.NameDoctor);
+                    cmd.Parameters.AddWithValue("middleName", doctor.MiddleName);
+                    cmd.Parameters.AddWithValue("lastName", doctor.LastName);
+                    cmd.Parameters.AddWithValue("birthDate", doctor.BirthDate);
+                    cmd.Parameters.AddWithValue("telephone", doctor.Telephone);
+                    cmd.Parameters.AddWithValue("idAddress", doctor.Address.IdAddress);
+                    cmd.Parameters.Add("response", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                if (response != 0)
-                {
-                    outputResult = "Doctor actualizada con éxito";
-                }
-                else
-                {
-                    outputResult = "Ha ocurrido un error";
+                    objConnection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    doctorGenerated = Convert.ToInt32(cmd.Parameters["response"].Value);
+
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                outputResult = $"Error: {e.Message}";
+                doctorGenerated = 0;
+                message = ex.ToString();
             }
-            return outputResult;
-        }//End update doctor method
 
-        //Delete
-        public static string DeleteDoctor(int id)
+            Console.WriteLine(message);
+
+            return doctorGenerated;
+        }//End create VO_Doctor
+
+        public static bool UpdateDoctor(VO_Doctor doctor)
         {
-            string outputResult = "";
-            int response = 0;
+            bool response = false;
+            string message = string.Empty;
+
+            using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SP_Update_Doctor", objConnection);
+                    cmd.Parameters.AddWithValue("idDoctor", doctor.IdDoctor);
+                    cmd.Parameters.AddWithValue("nameDoctor", doctor.NameDoctor);
+                    cmd.Parameters.AddWithValue("middleName", doctor.MiddleName);
+                    cmd.Parameters.AddWithValue("lastName", doctor.LastName);
+                    cmd.Parameters.AddWithValue("birthDate", doctor.BirthDate);
+                    cmd.Parameters.AddWithValue("telephone", doctor.Telephone);
+                    cmd.Parameters.AddWithValue("idAddress", doctor.Address.IdAddress);
+                    cmd.Parameters.Add("response", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    objConnection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    response = Convert.ToBoolean(cmd.Parameters["response"].Value);
+
+                }
+                catch (Exception ex)
+                {
+                    response = false;
+                    message = ex.Message.ToString();
+                }
+            }
+
+            Console.WriteLine(message);
+
+            return response;
+
+        }//End edit VO_Doctor
+
+        public static bool DeleteDoctor(int idDoctor)
+        {
+            bool response = false;
+            string message = string.Empty;
+
             try
             {
-                response = DataGetObject.executeNonQuery("SP_Delete_Doctor",
-                    "@idDoctor", id
-                    );
+                using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+                {
 
-                if (response != 0)
-                {
-                    outputResult = "Doctor eliminada con éxito";
-                }
-                else
-                {
-                    outputResult = "Ha ocurrido un error";
+                    SqlCommand cmd = new SqlCommand("SP_Delete_Doctor", objConnection);
+                    cmd.Parameters.AddWithValue("idDoctor", idDoctor);
+                    cmd.Parameters.Add("response", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    objConnection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    response = Convert.ToBoolean(cmd.Parameters["response"].Value);
+
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                outputResult = $"Error: {e.Message}";
+                response = false;
+                message = ex.Message;
             }
-            return outputResult;
-        }//End delete doctor method
 
+            Console.WriteLine(message);
 
+            return response;
+
+        }//End delete doctor
 
     }//End Doctor class
 }//End namespace

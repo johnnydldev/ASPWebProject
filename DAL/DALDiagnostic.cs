@@ -18,12 +18,12 @@ namespace DAL
             try
             {
                 response = DataGetObject.executeNonQuery("SP_Create_Diagnostic",
-                    "@medicalCondition", diagnostic.MedicalCondition,
-                    "@registerDate", diagnostic.RegisterDate,
-                    "@idTreatment", diagnostic.IdTreatment,
-                    "@idDoctor", diagnostic.IdDoctor,
-                    "@idPatient", diagnostic.IdPatient,
-                    "@idLaboratoryResult", diagnostic.IdLaboratoryResult
+                    "medicalCondition", diagnostic.MedicalCondition,
+                    "registerDate", diagnostic.RegisterDate,
+                    "idTreatment", diagnostic.Treatment.IdTreatment,
+                    "idDoctor", diagnostic.Doctor.IdDoctor,
+                    "idPatient", diagnostic.Patient.IdPatient,
+                    "idLaboratoryResult", diagnostic.LabResult.IdLaboratoryResult
                 );
 
                 if (response != 0)

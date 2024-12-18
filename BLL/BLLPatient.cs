@@ -12,14 +12,14 @@ namespace BLL
     {
 
         //Create
-        public static string CreatePatient(VO_Patient patient)
+        public static int CreatePatient(VO_Patient patient)
         {
             return DALPatient.CreatePatient(patient);
         }
         //Read
-        public static List<VO_Patient> ListPatients(params object[] parameters)
+        public static List<VO_Patient> GetAllPatients()
         {
-            return DALPatient.ListPatient(parameters);
+            return DALPatient.GetAllPatients();
         }
 
         /* Method to list the results by patient
@@ -31,21 +31,18 @@ namespace BLL
         }*/
 
         //Update
-        public static string UpdatePatient(VO_Patient patient)
+        public static bool UpdatePatient(VO_Patient patient)
         {
             return DALPatient.UpdatePatient(patient);
         }
 
         //Delete
-        public static string DeletePatient(int id)
+        public static bool DeletePatient(int id)
         {
 
             return DALPatient.DeletePatient(id);
 
         }//End delete method
-
-
-
 
     }//End patient class
 }//End namespace

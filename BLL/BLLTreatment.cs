@@ -12,14 +12,14 @@ namespace BLL
     {
 
         //Create
-        public static string CreateTreatment(VO_Treatment treatment)
+        public static int CreateTreatment(VO_Treatment treatment)
         {
             return DALTreatment.CreateTreatment(treatment);
         }
         //Read
-        public static List<VO_Treatment> ListTreatments(params object[] parameters)
+        public static List<VO_Treatment> GetAllTreatments()
         {
-            return DALTreatment.ListTreatment(parameters);
+            return DALTreatment.GetAllTreatments();
         }
 
         /* Method to list the results by patient
@@ -31,21 +31,21 @@ namespace BLL
         }*/
 
         //Update
-        public static string UpdateTreatment(VO_Treatment treatment)
+        public static bool UpdateTreatment(VO_Treatment treatment)
         {
             return DALTreatment.UpdateTreatment(treatment);
         }
 
         //Delete
-        public static string DeleteTreatment(int id)
+        public static bool DeleteTreatment(int id)
         {
-            return DALTreatment.DeleteTreatment(id);
+            return DALTreatment.DeleteTetreatment(id);
 
         }//End delete method
 
-        public static VO_Treatment GetTreatmentByMedicament(int id)
+        public static VO_Treatment GetTreatmentById(int id)
         {
-            return DALTreatment.GetTreatmentByMedicament(id);
+            return DALTreatment.GetTreatmentById(id);
 
         }//End get treatment method
 
