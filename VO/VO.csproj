@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tools\ChargeDateValues.cs" />
     <Compile Include="VO_Diagnostic.cs" />
     <Compile Include="VO_Doctor.cs" />
     <Compile Include="VO_Laboratory_Result.cs" />

@@ -22,15 +22,6 @@ namespace BLL
             return DALAddress.ListAddress(parameters);
         }
 
-        /* Method to list the results by patient
-        public static List<VO_Address> ListAddressByPatient(int idPatient)
-        {
-            List<VO_Address> listPatient = DAL_Camiones.Get_Camiones();
-
-            return lista_vacia;
-        }*/
-
-
         public static VO_Address GetAddressById(int id)
         {
             return DALAddress.GetAddressById(id);
@@ -50,8 +41,12 @@ namespace BLL
 
         }//End delete method
 
+        public static List<VO_Address> ListAddressComplete()
+        {
 
+            return DALAddress.ListAddressComplete();
 
+        }//End delete method
 
     }//End address class
 }//End namespace

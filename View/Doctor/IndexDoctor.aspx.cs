@@ -23,7 +23,7 @@ namespace AspWebProject.View.Doctor
         public void loadGrid()
         {
             //Load the data grid view with the information record
-            GVDoctors.DataSource = BLLMedicament.ListMedicaments();
+            GVDoctors.DataSource = BLLDoctor.GetAllDoctors();
 
             //Rendering the information
             GVDoctors.DataBind();

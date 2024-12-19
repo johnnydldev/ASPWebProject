@@ -177,6 +177,53 @@ namespace DAL
             return outputResult;
         }//End delete address method
 
+        public static List<VO_Address> ListAddressComplete()
+        {
+            //creo una lista de objeto VO
+            List<VO_Address> list = new List<VO_Address>();
+
+            using (SqlConnection objConnection = new SqlConnection(Configuration.GetStringConnection))
+            {
+                SqlDataReader reader;
+                try
+                {
+
+                    SqlCommand cmd = new SqlCommand("SP_List_Address_Complete", objConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    objConnection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new VO_Address
+                            {
+                                IdAddress = Convert.ToInt32(reader["idAddress"].ToString()),
+                                Street = reader["address"].ToString(),
+                            });
+
+                            //End adding information medicament
+
+                        }
+                    }//End information reading
+
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.ToString());
+                    list = new List<VO_Address>();
+                }
+
+
+            }//End using of stringConnection
+
+            return list;
+
+        }//End list address complete method
+
 
     }//End address class
 }//End namespace

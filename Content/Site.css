@@ -19,3 +19,9 @@ textarea {
         padding: 0;
     }
 }
+
+.container{
+    border: solid 1px red;
+    margin: 20px;
+    padding: 10px;
+}

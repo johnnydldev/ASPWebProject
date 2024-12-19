@@ -44,6 +44,13 @@ namespace BLL
 
         }//End delete method
 
+        public static VO_Doctor searchById(int idDoctor)
+        {
+
+            return DALDoctor.GetById(idDoctor);
+
+        }//End delete method
+
 
     }//End doctor class
 }//End namespace
