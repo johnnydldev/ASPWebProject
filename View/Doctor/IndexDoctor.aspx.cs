@@ -18,7 +18,7 @@ namespace AspWebProject.View.Doctor
             {
                 loadGrid();
             }
-        }
+        }//End load event
 
         public void loadGrid()
         {
@@ -27,13 +27,13 @@ namespace AspWebProject.View.Doctor
 
             //Rendering the information
             GVDoctors.DataBind();
-        }
+        }//End load grid event
 
         protected void CreateDoctor(object sender, EventArgs e)
         {
             Response.Redirect("FormDoctor.aspx");
 
-        }//End load page event
+        }//End create doctor event
 
         protected void OnDeleteDoctor(object sender, GridViewDeleteEventArgs e)
         {
@@ -75,7 +75,7 @@ namespace AspWebProject.View.Doctor
             //reload
             loadGrid();
 
-        }//End load page event
+        }//End delete event
 
         protected void OnExcecuteCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -106,23 +106,23 @@ namespace AspWebProject.View.Doctor
                 Response.Redirect($"FormDoctor.aspx?Id={idDoctor}");
             }
 
-        }//End load page event
+        }//End create and update event
 
 
         protected void OnEditDoctor(object sender, GridViewEditEventArgs e)
         {
 
-        }
+        }//End edit event
 
         protected void OnUpdateDoctor(object sender, GridViewUpdateEventArgs e)
         {
 
-        }
+        }//End update event
 
         protected void OnCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
 
-        }
+        }//End cancel and edit event
 
     }//End doctor class
 }//End namespace

@@ -46,10 +46,11 @@ namespace AspWebProject.View.Doctor
                     //Validate that exist the record in the table, if isn't that return to form
                     if (doctor.IdDoctor > 0)
                     {
-                        string dateComplete = doctor.BirthDate;
+                        string dateComplete = doctor.BirthDate.ToString();
                         string year = dateComplete.Substring(6,4);
                         string month = dateComplete.Substring(3,2);
                         string day = dateComplete.Substring(0,2);
+                        string address = doctor.Address.Street.ToString();
                         //Assign the new values to record according to the id doctor selected
                         title.Text = "Actualizar doctor";
                         subTitle.Text = $"Modificar los datos del doctor #{_id}";
@@ -60,6 +61,7 @@ namespace AspWebProject.View.Doctor
                         ddlyear.Items.FindByText(year).Selected = true;
                         ddlmonth.Items.FindByText(month).Selected = true;
                         ddlday.Items.FindByText(day).Selected = true;
+                        ddlAddress.Items.FindByText(address).Selected = true;
 
                         Console.WriteLine("El objeto es: " + doctor);
                     }

@@ -381,5 +381,69 @@ namespace DAL
         }//End get VO_Diagnostic id
 
 
+        public static VO_Diagnostic GetByIdPatient(int idPatient)
+        {
+            VO_Diagnostic diagnostic = new VO_Diagnostic();
+
+            try
+            {
+                using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+                {
+                    SqlDataReader reader;
+                    SqlCommand cmd;
+
+                    cmd = new SqlCommand("SP_Verify_Patient_Linked_With_Diagnostic", objConnection);
+                    cmd.Parameters.AddWithValue("idPatient", idPatient);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    objConnection.Open();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            diagnostic = new VO_Diagnostic
+                            {
+                                IdDiagnostic = Convert.ToInt32(reader["idDiagnostic"].ToString()),
+                                MedicalCondition = reader["medicalCondition"].ToString(),
+                                Treatment = new VO_Treatment()
+                                {
+                                    IdTreatment = Convert.ToInt32(reader["idTreatment"].ToString()),
+                                    RecommendTreatment = reader["recommendTreatment"].ToString()
+                                },
+                                Doctor = new VO_Doctor()
+                                {
+                                    IdDoctor = Convert.ToInt32(reader["idDoctor"].ToString()),
+                                    NameDoctor = reader["nameDoctor"].ToString()
+                                },
+                                Patient = new VO_Patient()
+                                {
+                                    IdPatient = Convert.ToInt32(reader["idPatient"].ToString()),
+                                    NamePatient = reader["namePatient"].ToString()
+                                },
+                                LabResult = new VO_Laboratory_Result()
+                                {
+                                    IdLaboratoryResult = Convert.ToInt32(reader["idLaboratoryResult"].ToString()),
+                                    Test = reader["test"].ToString(),
+                                    ResultValue = reader["resultValue"].ToString(),
+                                    DateDone = reader["dateDone"].ToString()
+                                }
+
+                            };
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+                diagnostic = new VO_Diagnostic();
+            }
+
+            return diagnostic;
+        }//End get VO_Diagnostic id
+
+
     }//End diagnostic class
 }//End namespace

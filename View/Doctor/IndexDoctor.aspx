@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IndexDoctor.aspx.cs" Inherits="AspWebProject.View.Doctor.IndexDoctor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-     <!-- Content here -->
+ <!-- Content here -->
  <div class="container w-100">
 
       <div class="row">

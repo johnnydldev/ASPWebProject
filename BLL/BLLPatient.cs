@@ -44,5 +44,14 @@ namespace BLL
 
         }//End delete method
 
+
+        public static VO_Patient searchById(int idPatient)
+        {
+
+            return DALPatient.GetById(idPatient);
+
+        }//End delete method
+
+
     }//End patient class
 }//End namespace

@@ -13,7 +13,7 @@
        <asp:Label ID="lblAddress" runat="server" CssClass="text-center modal-title" Text="Dirección:"></asp:Label>
        <asp:DropDownList id="ddlAddress" AutoPostBack="True" OnSelectedIndexChanged="Selection_Change" runat="server" CssClass="w-75">
 
-        <asp:ListItem Selected="True" Value="White">Seleciona una opción</asp:ListItem>
+        <asp:ListItem  Value="White">Seleciona una opción</asp:ListItem>
 
       </asp:DropDownList>
    </div>
@@ -47,9 +47,9 @@
 
             <asp:Label ID="lblBirthdate" runat="server" Text="Fecha de nacimiento:" CssClass="mt-12"></asp:Label>
             <div class="container mb-4">
-                <asp:DropDownList ID="ddlyear" AutoPostBack="True" OnSelectedIndexChanged="GetBirthdate" runat="server"></asp:DropDownList>
-                <asp:DropDownList ID="ddlmonth" AutoPostBack="True" OnSelectedIndexChanged="GetBirthdate" runat="server"></asp:DropDownList>
-                <asp:DropDownList ID="ddlday" AutoPostBack="True" OnSelectedIndexChanged="GetBirthdate" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlyear"  OnSelectedIndexChanged="GetBirthdate" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlmonth"  OnSelectedIndexChanged="GetBirthdate" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlday"  OnSelectedIndexChanged="GetBirthdate" runat="server"></asp:DropDownList>
             </div>
 
             <asp:Button ID="btnSave" CssClass="btn btn-success mt-3 mb-5" runat="server" Text="Guardar" OnClick="btnSaveClick" />

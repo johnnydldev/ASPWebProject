@@ -58,6 +58,12 @@ namespace BLL
 
         }//End get diagnostic by lab method
 
+        public static VO_Diagnostic GetDiagnosticByPatientId(int idDoctor)
+        {
+
+            return DALDiagnostic.GetByIdPatient(idDoctor);
+
+        }//End get diagnostic by lab method
 
     }//End diagnostic class
 }//End namespace

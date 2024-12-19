@@ -101,11 +101,7 @@ namespace DAL
                                 Address = new VO_Address()
                                 {
                                     IdAddress = Convert.ToInt32(reader["idAddress"].ToString()),
-                                    Street = reader["street"].ToString(),
-                                    Suburb = reader["suburb"].ToString(),
-                                    City = reader["city"].ToString(),
-                                    State = reader["state"].ToString()
-
+                                    Street = reader["street"].ToString()
                                 }
                             };
                         }
@@ -233,6 +229,7 @@ namespace DAL
             return response;
 
         }//End delete patient
+
 
     }//End patient class
 }//End namespace
