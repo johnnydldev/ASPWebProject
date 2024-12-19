@@ -31,7 +31,15 @@ namespace VO.Tools
             int monthMajor = 12;
             while (monthMajor >= 1)
             {
-                months.Add(monthMajor.ToString());
+                if(monthMajor < 10)
+                {
+                    string month = "0"+ monthMajor.ToString();
+                    months.Add(month);
+                }
+                else
+                {
+                    months.Add(monthMajor.ToString());
+                }
                 monthMajor--;
             }
 
@@ -45,7 +53,17 @@ namespace VO.Tools
             int dayMajor = 31;
             while (dayMajor >= 1)
             {
-                days.Add(dayMajor.ToString());
+
+                if (dayMajor < 10)
+                {
+                    string day = "0" + dayMajor.ToString();
+                    days.Add(day);
+                }
+                else
+                {
+                    days.Add(dayMajor.ToString());
+                }
+
                 dayMajor--;
             }
 

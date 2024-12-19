@@ -31,15 +31,15 @@
 
                   <asp:BoundField DataField="IdDoctor" HeaderText="Id de doctor" ItemStyle-Width="50px" ReadOnly="true" />
 
-                  <asp:BoundField DataField="nameDoctor" HeaderText="Calle" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="nameDoctor" HeaderText="Nombre(s)" ItemStyle-Width="85px" />
 
-                  <asp:BoundField DataField="middleName" HeaderText="Colonia" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="middleName" HeaderText="Apellido materno" ItemStyle-Width="85px" />
           
-                  <asp:BoundField DataField="lastName" HeaderText="Ciudad" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="lastName" HeaderText="Apellido paterno" ItemStyle-Width="85px" />
           
-                  <asp:BoundField DataField="birthDate" HeaderText="Estado" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="birthDate" HeaderText="Fecha de nacimiento" ItemStyle-Width="85px" />
                   
-                  <asp:BoundField DataField="telephone" HeaderText="Estado" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="telephone" HeaderText="Telefono" ItemStyle-Width="85px" />
 
                   <asp:ButtonField CommandName="Select" HeaderText="Ver información" Text="Ver Detalles" ControlStyle-CssClass="btn btn-success btn-xs" ItemStyle-Width="50px" />
           

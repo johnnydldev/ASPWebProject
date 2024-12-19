@@ -36,10 +36,10 @@
             <%--Campo--%>
             <asp:TextBox ID="txtNameDoctor" runat="server" CssClass="form-control"></asp:TextBox>
 
-            <asp:Label ID="lblMiddlename" runat="server" Text="Apellido materno:" CssClass="mt-3"></asp:Label>
+            <asp:Label ID="lblMiddlename" runat="server" Text="Apellido paterno:" CssClass="mt-3"></asp:Label>
             <asp:TextBox ID="txtMiddlename" runat="server" CssClass="form-control"></asp:TextBox>
 
-            <asp:Label ID="lblLastname" runat="server" Text="Apellido paterno:" CssClass="mt-3"></asp:Label>
+            <asp:Label ID="lblLastname" runat="server" Text="Apellido materno:" CssClass="mt-3"></asp:Label>
             <asp:TextBox ID="txtLastname" runat="server" CssClass="form-control"></asp:TextBox>
 
             <asp:Label ID="lblTelephone" runat="server" Text="Telefono:" CssClass="mt-3"></asp:Label>
