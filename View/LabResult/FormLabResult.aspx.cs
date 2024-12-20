@@ -79,6 +79,8 @@ namespace AspWebProject.View.LabResult
                         title = "Ops...";
                         response = outputResult;
                         type = "warning";
+                        SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
 
                     }
 
@@ -99,12 +101,16 @@ namespace AspWebProject.View.LabResult
                     title = "Ops...";
                     response = outputResult;
                     type = "warning";
+                    SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
                 }
                 else
                 {
                     title = "Correcto!";
                     response = outputResult;
                     type = "success";
+                    SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
                 }
             }
             catch (Exception ex)

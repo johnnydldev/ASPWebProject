@@ -49,17 +49,19 @@ namespace AspWebProject.View.Diagnostic
                 title = "Error";
                 msg = "No se ha podido eliminar el diagnostic";
                 type = "error";
+                SweetAlert.Sweet_Alert(title, msg, type, this.Page, this.GetType());
+
             }
             else
             {
                 title = "Correcto!";
                 msg = "Tratamiento eliminado con exito";
                 type = "success";
+                SweetAlert.Sweet_Alert(title, msg, type, this.Page, this.GetType());
+
             }
 
-            //sweet alert
-            SweetAlert.Sweet_Alert(title, msg, type, this.Page, this.GetType());
-
+          
             //reload
             loadGrid();
 

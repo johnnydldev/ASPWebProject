@@ -50,17 +50,18 @@ namespace AspWebProject.View.Address
                 title = "Error";
                 msg = response;
                 type = "error";
+                SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
             }
             else
             {
                 title = "Correcto!";
                 msg = response;
                 type = "success";
+                SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
             }
 
-            //sweet alert
-            SweetAlert.Sweet_Alert(title, msg, type, this.Page, this.GetType());
-            
             //reload
             loadGrid();
 

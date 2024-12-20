@@ -32,6 +32,11 @@ namespace AspWebProject.Tools
                            "title: '" + title + "'," +
                            "text: '" + msg + "'," +
                            "icon: '" + type + "'" +
+                           "showCancelButton: true," +
+                            "confirmButtonColor: '#3085d6'," +
+                            "cancelButtonColor: '#d33'," +
+                            "confirmButtonText: 'Yes, delete it!'" +
+
                            "}).then((result)=>{" +
                            "if(result.isConfirmed){" +
                            "window.location.href = '" + dir + "'" +
@@ -45,7 +50,6 @@ namespace AspWebProject.Tools
             ClientScriptManager cs = pg.ClientScript;
             cs.RegisterClientScriptBlock(cstype, sa, sa);
         }
-
 
     }//End sweetAlert
 }//End namespace

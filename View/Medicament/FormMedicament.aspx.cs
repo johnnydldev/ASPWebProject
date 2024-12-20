@@ -78,6 +78,7 @@ namespace AspWebProject.View.Medicament
                         title = "Ops...";
                         response = outputResult;
                         type = "warning";
+                        SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
 
                     }
 
@@ -98,12 +99,16 @@ namespace AspWebProject.View.Medicament
                     title = "Ops...";
                     response = outputResult;
                     type = "warning";
+                    SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
                 }
                 else
                 {
                     title = "Correcto!";
                     response = outputResult;
                     type = "success";
+                    SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
                 }
             }
             catch (Exception ex)
@@ -111,6 +116,8 @@ namespace AspWebProject.View.Medicament
                 title = "Error";
                 response = ex.Message;
                 type = "error";
+                SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
             }
             //sweet alert
             SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType(), "/view/Medicament/IndexMedicament.aspx");

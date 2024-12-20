@@ -79,10 +79,11 @@ namespace AspWebProject.View.Address
                         title = "Ops...";
                         response = outputResult;
                         type = "warning";
-                        
+                        SweetAlert.Sweet_Alert(title,response,type, this.Page, this.GetType(), "~/View/Address/IndexAddress.aspx");
+
                     }
 
-                    HttpContext.Current.Response.Redirect("IndexAddress.aspx");
+                    //HttpContext.Current.Response.Redirect("IndexAddress.aspx");
 
                 }
                 else
@@ -90,7 +91,7 @@ namespace AspWebProject.View.Address
                     //Update
                     address.IdAddress = int.Parse(Request.QueryString["Id"]);
                     outputResult = BLLAddress.UpdateAddress(address);
-                    HttpContext.Current.Response.Redirect("IndexAddress.aspx");
+                    //HttpContext.Current.Response.Redirect("IndexAddress.aspx");
                 }
 
                 //Preparing the info to show the errors through the Seet Alert
@@ -99,12 +100,16 @@ namespace AspWebProject.View.Address
                     title = "Ops...";
                     response = outputResult;
                     type = "warning";
+                    SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType(), "~/View/Address/IndexAddress.aspx");
+
                 }
                 else
                 {
                     title = "Correcto!";
                     response = outputResult;
                     type = "success";
+                    SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
                 }
             }
             catch (Exception ex)
@@ -112,10 +117,10 @@ namespace AspWebProject.View.Address
                 title = "Error";
                 response = ex.Message;
                 type = "error";
-            }
-            //sweet alert
-            SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType(), "/view/address/IndexAddress.aspx");
+                SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType(), "~/View/Address/IndexAddress.aspx");
 
+            }
+            
         }//End save event
 
         protected void btnBackClick(object sender, EventArgs e)

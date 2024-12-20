@@ -61,12 +61,16 @@ namespace AspWebProject.View.Patient
                 title = "Error";
                 msg = "No se ha realizado la eliminación, esto se puede deber a que esta vinculado a un diagnostico o no existe.";
                 type = "error";
+                SweetAlert.Sweet_Alert(title, msg, type, this.Page, this.GetType());
+
             }
             else
             {
                 title = "Correcto!";
                 msg = "Eliminación exitosa.";
                 type = "success";
+                 SweetAlert.Sweet_Alert(title, msg, type, this.Page, this.GetType());
+
             }
 
             //sweet alert

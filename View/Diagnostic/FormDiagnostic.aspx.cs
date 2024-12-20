@@ -125,7 +125,7 @@ namespace AspWebProject.View.Diagnostic
                         title = "Ops...";
                         response = "No se ha podido registrar el nuevo tratamiento.";
                         type = "warning";
-
+                        SweetAlert.Sweet_Alert(title,response,type, this.Page, this.GetType());
                     }
 
                     HttpContext.Current.Response.Redirect("IndexDiagnostic.aspx");
@@ -145,12 +145,16 @@ namespace AspWebProject.View.Diagnostic
                     title = "Ops...";
                     response = "No se ha podido registrar o actualizar el tratamiento.";
                     type = "warning";
+                    SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
                 }
                 else
                 {
                     title = "Correcto!";
                     response = "Actualización del tratamiento o registro exitoso.";
                     type = "success";
+                    SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
                 }
             }
             catch (Exception ex)
@@ -158,11 +162,10 @@ namespace AspWebProject.View.Diagnostic
                 title = "Error";
                 response = ex.Message;
                 type = "error";
+                SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType());
+
             }
-            //sweet alert
-            SweetAlert.Sweet_Alert(title, response, type, this.Page, this.GetType(), "/view/Diagnostic/IndexDiagnostic.aspx");
-
-
+            
 
 
         }
