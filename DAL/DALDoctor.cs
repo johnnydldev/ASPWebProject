@@ -71,6 +71,50 @@ namespace DAL
             return doctors;
         }//End listing VO_Doctors
 
+        public static List<VO_Doctor> GetAllDoctorsWithNameCompete()
+        {
+            List<VO_Doctor> doctors = new List<VO_Doctor>();
+
+            using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+            {
+                SqlDataReader reader;
+                try
+                {
+
+                    SqlCommand cmd = new SqlCommand("SP_List_Doctors_Name_Complete", objConnection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    objConnection.Open();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            doctors.Add(new VO_Doctor()
+                            {
+                                IdDoctor = Convert.ToInt32(reader["idDoctor"].ToString()),
+                                NameDoctor = reader["nameDoctor"].ToString()
+                            });//End VO_Doctors listing
+
+                        }
+                    }//End information reading
+
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.ToString());
+                    doctors = new List<VO_Doctor>();
+                }
+
+
+            }//End using of stringConnection
+
+
+            return doctors;
+        }//End listing VO_Doctors
+
         public static VO_Doctor GetById(int idDoctor)
         {
             VO_Doctor doctor = new VO_Doctor();

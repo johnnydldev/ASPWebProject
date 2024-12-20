@@ -77,6 +77,7 @@ namespace DAL
 
                     cmd = new SqlCommand("SP_Get_Recipe_By_Id", objConnection);
                     cmd.Parameters.AddWithValue("idRecipe", idRecipe);
+
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                      objConnection.OpenAsync();

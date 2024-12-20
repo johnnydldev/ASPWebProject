@@ -69,6 +69,49 @@ namespace DAL
             return patients;
         }//End listing VO_patients
 
+        public static List<VO_Patient> GetAllPatientsWithNameComplete()
+        {
+            List<VO_Patient> patients = new List<VO_Patient>();
+
+            using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+            {
+                SqlDataReader reader;
+                try
+                {
+
+                    SqlCommand cmd = new SqlCommand("SP_List_Patients_With_Name_Complete", objConnection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    objConnection.Open();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            patients.Add(new VO_Patient()
+                            {
+                                IdPatient = Convert.ToInt32(reader["idPatient"].ToString()),
+                                NamePatient = reader["namePatient"].ToString()
+                            });//End VO_patients listing
+
+                        }
+                    }//End information reading
+
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.ToString());
+                    patients = new List<VO_Patient>();
+                }
+
+
+            }//End using of stringConnection
+
+
+            return patients;
+        }//End listing VO_patients
         public static VO_Patient GetById(int idPatient)
         {
             VO_Patient patient = new VO_Patient();

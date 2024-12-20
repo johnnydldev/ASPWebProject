@@ -22,6 +22,11 @@ namespace BLL
             return DALPatient.GetAllPatients();
         }
 
+        public static List<VO_Patient> GetAllPatientsWithNameComplete()
+        {
+            return DALPatient.GetAllPatientsWithNameComplete();
+        }
+
         /* Method to list the results by patient
         public static List<VO_Patient> ListPatientByPatient(int idPatient)
         {

@@ -22,6 +22,11 @@ namespace BLL
             return DALDoctor.GetAllDoctors();
         }
 
+        public static List<VO_Doctor> GetAllDoctorsWithNameCompete()
+        {
+            return DALDoctor.GetAllDoctorsWithNameCompete();
+        }
+
         /* Method to list the results by patient
         public static List<VO_Doctor> ListDoctorByPatient(int idPatient)
         {

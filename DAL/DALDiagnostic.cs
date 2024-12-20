@@ -104,6 +104,7 @@ namespace DAL
                             {
                                 IdDiagnostic = Convert.ToInt32(reader["idDiagnostic"].ToString()),
                                 MedicalCondition = reader["medicalCondition"].ToString(),
+                                RegisterDate = reader["registerDate"].ToString(),
                                 Treatment = new VO_Treatment()
                                 {
                                     IdTreatment = Convert.ToInt32(reader["idTreatment"].ToString()),
@@ -152,7 +153,7 @@ namespace DAL
             {
                 using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
                 {
-                    SqlCommand cmd = new SqlCommand("SP_Create_Patient", objConnection);
+                    SqlCommand cmd = new SqlCommand("SP_Create_Diagnostic", objConnection);
                     cmd.Parameters.AddWithValue("medicalCondition", diagnostic.MedicalCondition);
                     cmd.Parameters.AddWithValue("registerDate", diagnostic.RegisterDate);
                     cmd.Parameters.AddWithValue("idTreatment", diagnostic.Treatment.IdTreatment);
@@ -189,7 +190,7 @@ namespace DAL
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SP_Update_Patient", objConnection);
+                    SqlCommand cmd = new SqlCommand("SP_Update_Diagnostic", objConnection);
                     cmd.Parameters.AddWithValue("idDiagnostic", diagnostic.IdDiagnostic);
                     cmd.Parameters.AddWithValue("medicalCondition", diagnostic.MedicalCondition);
                     cmd.Parameters.AddWithValue("registerDate", diagnostic.RegisterDate);
