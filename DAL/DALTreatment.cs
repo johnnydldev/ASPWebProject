@@ -160,10 +160,10 @@ namespace DAL
                 try
                 {
                     SqlCommand cmd = new SqlCommand("SP_Update_Treatment", objConnection);
+                    cmd.Parameters.AddWithValue("@idTreatment", treatment.IdTreatment);
                     cmd.Parameters.AddWithValue("@recommendTreatment", treatment.RecommendTreatment);
                     cmd.Parameters.AddWithValue("@startedDate", treatment.StartedDate);
                     cmd.Parameters.AddWithValue("@idMedicament", treatment.Medicament.IdMedicament);
-                    cmd.Parameters.Add("response", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("response", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 

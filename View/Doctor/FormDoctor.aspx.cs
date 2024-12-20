@@ -28,7 +28,6 @@ namespace AspWebProject.View.Doctor
                     title.Text = "Registrar Doctor";
                     subTitle.Text = "Registro de nuevo doctor";
                     chargeDropdownList();
-
                 }
                 else
                 {

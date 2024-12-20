@@ -44,9 +44,9 @@ namespace DAL
                                 Medicament = reader["medicament"].ToString(),
                                 Doctor = reader["doctor"].ToString(),
                                 RegisterDate = reader["registerDate"].ToString(),
-                                Patience = new VO_Patient()
+                                Patient = new VO_Patient()
                                 {
-                                    IdPatient = Convert.ToInt32(reader["idPatience"].ToString()),
+                                    IdPatient = Convert.ToInt32(reader["idPatient"].ToString()),
                                     NamePatient = reader["namePatient"].ToString(),
                                 }
                             });
@@ -96,7 +96,7 @@ namespace DAL
                                 Medicament = reader["medicament"].ToString(),
                                 Doctor = reader["doctor"].ToString(),
                                 RegisterDate = reader["registerDate"].ToString(),
-                                Patience = new VO_Patient()
+                                Patient = new VO_Patient()
                                 {
                                     IdPatient = Convert.ToInt32(reader["idPatient"].ToString()),
                                     NamePatient = reader["namePatient"].ToString()
@@ -133,15 +133,15 @@ namespace DAL
                 using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
                 {
                     SqlCommand cmd = new SqlCommand("SP_Create_Recipe", objConnection);
-                    cmd.Parameters.AddWithValue("@namePatient", recipe.Patience.NamePatient);
-                    cmd.Parameters.AddWithValue("@medicalCondition", recipe.MedicalCondition);
-                    cmd.Parameters.AddWithValue("@treatment", recipe.Treatment);
-                    cmd.Parameters.AddWithValue("@test", recipe.Test);
-                    cmd.Parameters.AddWithValue("@testResult", recipe.TestResult);
-                    cmd.Parameters.AddWithValue("@medicament", recipe.Medicament);
-                    cmd.Parameters.AddWithValue("@doctor", recipe.Doctor);
-                    cmd.Parameters.AddWithValue("@registerDate", recipe.RegisterDate);
-                    cmd.Parameters.AddWithValue("@idPatient", recipe.Patience.IdPatient);
+                    cmd.Parameters.AddWithValue("namePatient", recipe.Patient.NamePatient);
+                    cmd.Parameters.AddWithValue("medicalCondition", recipe.MedicalCondition);
+                    cmd.Parameters.AddWithValue("treatment", recipe.Treatment);
+                    cmd.Parameters.AddWithValue("test", recipe.Test);
+                    cmd.Parameters.AddWithValue("testResult", recipe.TestResult);
+                    cmd.Parameters.AddWithValue("medicament", recipe.Medicament);
+                    cmd.Parameters.AddWithValue("doctor", recipe.Doctor);
+                    cmd.Parameters.AddWithValue("registerDate", recipe.RegisterDate);
+                    cmd.Parameters.AddWithValue("idPatient", recipe.Patient.IdPatient);
                     cmd.Parameters.Add("response", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 

@@ -5,12 +5,8 @@
  <div class="container w-100">
 
       <div class="row">
-          <h3>Listado de Pacientes</h3>
+          <h3>Listado de recetas pacientes</h3>
           <%--Botón para agregar un nuevo camión--%>
-          <p>
-              <%--Se genere un evento "OnClick"--%>
-              <asp:Button ID="createRecipe" runat="server" Text="Registrar nuevo paciente" CssClass="btn btn-primary btn-lg w-100" Width="85px" OnClick="CreateRecipe" />
-          </p>
       </div>
 
       <div class="row">
@@ -19,42 +15,32 @@
               CssClass="table table-bordered table-striped table-condensed bg-info"
               AutoGenerateColumns="false"
               DataKeyNames="IdRecipe"
-              OnRowDeleting="OnDeleteRecipe"
-              OnRowCommand="OnExcecuteCommand"
-              OnRowEditing="OnEditRecipe"
-              OnRowUpdating="OnUpdateRecipe"
-              OnRowCancelingEdit="OnCancelingEdit">
+              OnRowCommand="OnExcecuteCommand">
               
-              <%--arriba se generan los eventos "onrow"--%>
+              <%-- arriba se generan los eventos "onrow" --%>
               
               <Columns>
 
-                  <asp:BoundField DataField="IdRecipe" HeaderText="Id de Paciente" ItemStyle-Width="50px" ReadOnly="true" />
+                  <asp:BoundField DataField="IdRecipe" HeaderText="Id de receta" ItemStyle-Width="50px" ReadOnly="true" />
 
-                  <asp:BoundField DataField="namePatient" HeaderText="Nombre(s)" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="Patient.namePatient" HeaderText="Paciente" ItemStyle-Width="85px" />
 
-                  <asp:BoundField DataField="medicalCondition" HeaderText="Apellido materno" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="medicalCondition" HeaderText="Condición Medica" ItemStyle-Width="85px" />
           
-                  <asp:BoundField DataField="treatment" HeaderText="Apellido paterno" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="treatment" HeaderText="Tratamiento" ItemStyle-Width="85px" />
           
-                  <asp:BoundField DataField="test" HeaderText="Fecha de nacimiento" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="test" HeaderText="Prueba" ItemStyle-Width="85px" />
                   
-                  <asp:BoundField DataField="testResult" HeaderText="Telefono" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="testResult" HeaderText="Resultado" ItemStyle-Width="85px" />
                   
-                  <asp:BoundField DataField="medicament" HeaderText="Telefono" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="medicament" HeaderText="Medicamento" ItemStyle-Width="85px" />
                   
-                  <asp:BoundField DataField="doctor" HeaderText="Telefono" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="doctor" HeaderText="Medico" ItemStyle-Width="85px" />
                   
-                  <asp:BoundField DataField="registerDate" HeaderText="Telefono" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="registerDate" HeaderText="Fecha de realización" ItemStyle-Width="85px" />
                   
-                  <asp:BoundField DataField="idPatience" HeaderText="Telefono" ItemStyle-Width="85px" />
-
                   <asp:ButtonField CommandName="Select" HeaderText="Ver información" Text="Ver Detalles" ControlStyle-CssClass="btn btn-success btn-xs" ItemStyle-Width="50px" />
           
-                  <asp:ButtonField CommandName="Edit" HeaderText="Editar" Text="Editar" ControlStyle-CssClass="btn btn-warning btn-xs" ItemStyle-Width="50px" />
-                  
-                  <asp:CommandField ButtonType="Button" HeaderText="Borrar" ShowDeleteButton="true" ShowHeader="true" ControlStyle-CssClass="btn btn-danger btn-xs" ItemStyle-Width="50px" />
-      
               </Columns>
 
           </asp:GridView>

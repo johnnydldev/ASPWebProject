@@ -46,28 +46,17 @@ namespace VO
             treatment = new VO_Treatment() 
             { 
                 IdTreatment = int.Parse(row["idTreatment"].ToString()),
-                RecommendTreatment = row["recommendTreatment"].ToString(),
-                Medicament = new VO_Medicament()
-                {
-                    IdMedicament = int.Parse(row["idMedicament"].ToString()),
-                    NameMedicament = row["nameMedicament"].ToString(),
-                    Dose = row["dose"].ToString(),
-                    UseInstruction = row["useInstruction"].ToString()
-                }
+                RecommendTreatment = row["recommendTreatment"].ToString()
             };
             doctor = new VO_Doctor()
             {
                 IdDoctor = int.Parse(row["idDoctor"].ToString()),
-                NameDoctor = row["nameDoctor"].ToString(),
-                MiddleName = row["middleNPatient"].ToString(),
-                LastName = row["lastNPatient"].ToString(),
+                NameDoctor = row["nameDoctor"].ToString()
             };
             patient = new VO_Patient()
             {
                 IdPatient = int.Parse(row["idPatient"].ToString()),
-                NamePatient = row["namePatient"].ToString(),
-                MiddleName = row["middleNDoctor"].ToString(),
-                LastName = row["lastNDoctor"].ToString(),
+                NamePatient = row["namePatient"].ToString()
             };
             labResult = new VO_Laboratory_Result()
             {

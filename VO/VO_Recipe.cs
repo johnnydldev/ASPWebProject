@@ -20,7 +20,7 @@ namespace VO
         private string medicament;
         private string doctor;
         private string registerDate;
-        private VO_Patient patience;
+        private VO_Patient patient;
 
         //Declaring of getters and setters
         public int IdRecipe { get => idRecipe; set => idRecipe = value; }
@@ -32,7 +32,7 @@ namespace VO
         public string Medicament { get => medicament; set => medicament = value; }
         public string Doctor { get => doctor; set => doctor = value; }
         public string RegisterDate { get => registerDate; set => registerDate = value; }
-        public VO_Patient Patience { get => patience; set => patience = value; }
+        public VO_Patient Patient { get => patient; set => patient = value; }
 
 
 
@@ -47,7 +47,7 @@ namespace VO
             medicament = string.Empty;
             doctor = string.Empty;
             registerDate = string.Empty;
-            patience = new VO_Patient();
+            patient = new VO_Patient();
 
         }//End constructor method
 
@@ -62,14 +62,10 @@ namespace VO
             medicament = row["medicament"].ToString();
             doctor = row["doctor"].ToString();
             registerDate = row["registerDate"].ToString();
-            patience = new VO_Patient()
+            patient = new VO_Patient()
             {
                 IdPatient  = int.Parse(row["idPatient"].ToString()),
-                NamePatient = row["namePatient"].ToString(),
-                MiddleName = row["middleName"].ToString(),
-                LastName = row["lastName"].ToString(),
-                BirthDate = row["birthDate"].ToString(),
-                Telephone = row["telephone"].ToString()
+                NamePatient = row["namePatient"].ToString()
             };
         }//End override constructor method
 

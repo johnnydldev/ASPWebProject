@@ -13,7 +13,7 @@ namespace DAL
     {
         public static List<VO_Diagnostic> GetAllDiagnostics()
         {
-            List<VO_Diagnostic> diagnostic = new List<VO_Diagnostic>();
+            List<VO_Diagnostic> diagnostics = new List<VO_Diagnostic>();
 
             using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
             {
@@ -32,7 +32,7 @@ namespace DAL
                     {
                         while (reader.Read())
                         {
-                            diagnostic.Add(new VO_Diagnostic()
+                            diagnostics.Add(new VO_Diagnostic()
                             {
                                 IdDiagnostic = Convert.ToInt32(reader["idDiagnostic"].ToString()),
                                 MedicalCondition = reader["medicalCondition"].ToString(),
@@ -69,14 +69,14 @@ namespace DAL
                 catch (Exception ex)
                 {
                     Console.Write(ex.ToString());
-                    diagnostic = new List<VO_Diagnostic>();
+                    diagnostics = new List<VO_Diagnostic>();
                 }
 
 
             }//End using of stringConnection
 
 
-            return diagnostic;
+            return diagnostics;
         }//End listing VO_Diagnostics
 
         public static VO_Diagnostic GetById(int idDiagnostic)
