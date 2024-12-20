@@ -31,7 +31,7 @@
 
                   <asp:BoundField DataField="IdDiagnostic" HeaderText="Id de Diagnostico" ItemStyle-Width="50px" ReadOnly="true" />
 
-                  <asp:BoundField DataField="Treatment.medicalCondition" HeaderText="Condición medica" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="medicalCondition" HeaderText="Condición medica" ItemStyle-Width="85px" />
 
                   <asp:BoundField DataField="Treatment.recommendTreatment" HeaderText="Tratamiento recomendado" ItemStyle-Width="85px" />
                   
@@ -39,7 +39,7 @@
 
                   <asp:BoundField DataField="LabResult.test" HeaderText="Prueba" ItemStyle-Width="85px" />
 
-                  <asp:BoundField DataField="LabResult.testResult" HeaderText="Resultado" ItemStyle-Width="85px" />
+                  <asp:BoundField DataField="LabResult.resultValue" HeaderText="Resultado" ItemStyle-Width="85px" />
 
                   <asp:BoundField DataField="LabResult.dateDone" HeaderText="Fecha de realización" ItemStyle-Width="85px" />
 
