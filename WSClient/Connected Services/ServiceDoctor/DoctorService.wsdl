@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateDoctor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Doctor" type="tns:VO_Doctor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VO_Doctor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdDoctor" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameDoctor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BirthDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="tns:VO_Address" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VO_Address">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdAddress" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Street" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suburb" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateDoctorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateDoctorResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllDoctors">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllDoctorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDoctorsResult" type="tns:ArrayOfVO_Doctor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVO_Doctor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VO_Doctor" nillable="true" type="tns:VO_Doctor" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllDoctorsWithNameCompete">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllDoctorsWithNameCompeteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDoctorsWithNameCompeteResult" type="tns:ArrayOfVO_Doctor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDoctor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Doctor" type="tns:VO_Doctor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDoctorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateDoctorResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDoctor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDoctorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteDoctorResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idDoctor" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchByIdResult" type="tns:VO_Doctor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateDoctorSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDoctor" />
+  </wsdl:message>
+  <wsdl:message name="CreateDoctorSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDoctorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDoctorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDoctors" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDoctorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDoctorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDoctorsWithNameCompeteSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDoctorsWithNameCompete" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDoctorsWithNameCompeteSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDoctorsWithNameCompeteResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDoctorSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDoctor" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDoctorSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDoctorResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDoctorSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDoctor" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDoctorSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDoctorResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:searchById" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:searchByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DoctorServiceSoap">
+    <wsdl:operation name="CreateDoctor">
+      <wsdl:input message="tns:CreateDoctorSoapIn" />
+      <wsdl:output message="tns:CreateDoctorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDoctors">
+      <wsdl:input message="tns:GetAllDoctorsSoapIn" />
+      <wsdl:output message="tns:GetAllDoctorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDoctorsWithNameCompete">
+      <wsdl:input message="tns:GetAllDoctorsWithNameCompeteSoapIn" />
+      <wsdl:output message="tns:GetAllDoctorsWithNameCompeteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDoctor">
+      <wsdl:input message="tns:UpdateDoctorSoapIn" />
+      <wsdl:output message="tns:UpdateDoctorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDoctor">
+      <wsdl:input message="tns:DeleteDoctorSoapIn" />
+      <wsdl:output message="tns:DeleteDoctorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdl:input message="tns:searchByIdSoapIn" />
+      <wsdl:output message="tns:searchByIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DoctorServiceSoap" type="tns:DoctorServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateDoctor">
+      <soap:operation soapAction="http://tempuri.org/CreateDoctor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDoctors">
+      <soap:operation soapAction="http://tempuri.org/GetAllDoctors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDoctorsWithNameCompete">
+      <soap:operation soapAction="http://tempuri.org/GetAllDoctorsWithNameCompete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDoctor">
+      <soap:operation soapAction="http://tempuri.org/UpdateDoctor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDoctor">
+      <soap:operation soapAction="http://tempuri.org/DeleteDoctor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <soap:operation soapAction="http://tempuri.org/searchById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DoctorServiceSoap12" type="tns:DoctorServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateDoctor">
+      <soap12:operation soapAction="http://tempuri.org/CreateDoctor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDoctors">
+      <soap12:operation soapAction="http://tempuri.org/GetAllDoctors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDoctorsWithNameCompete">
+      <soap12:operation soapAction="http://tempuri.org/GetAllDoctorsWithNameCompete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDoctor">
+      <soap12:operation soapAction="http://tempuri.org/UpdateDoctor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDoctor">
+      <soap12:operation soapAction="http://tempuri.org/DeleteDoctor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <soap12:operation soapAction="http://tempuri.org/searchById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DoctorService">
+    <wsdl:port name="DoctorServiceSoap" binding="tns:DoctorServiceSoap">
+      <soap:address location="http://localhost:50034/WS/DoctorService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DoctorServiceSoap12" binding="tns:DoctorServiceSoap12">
+      <soap12:address location="http://localhost:50034/WS/DoctorService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

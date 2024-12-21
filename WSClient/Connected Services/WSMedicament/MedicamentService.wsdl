@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateMedicament">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="medicament" type="tns:VO_Medicament" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VO_Medicament">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdMedicament" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameMedicament" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dose" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UseInstruction" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateMedicamentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateMedicamentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListMedicaments">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListMedicamentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListMedicamentsResult" type="tns:ArrayOfVO_Medicament" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVO_Medicament">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VO_Medicament" nillable="true" type="tns:VO_Medicament" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateMedicament">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="medicament" type="tns:VO_Medicament" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMedicamentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateMedicamentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMedicament">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idMedicament" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMedicamentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteMedicamentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMedicamentById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMedicamentByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMedicamentByIdResult" type="tns:VO_Medicament" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateMedicamentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateMedicament" />
+  </wsdl:message>
+  <wsdl:message name="CreateMedicamentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateMedicamentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListMedicamentsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListMedicaments" />
+  </wsdl:message>
+  <wsdl:message name="ListMedicamentsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListMedicamentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMedicamentSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateMedicament" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMedicamentSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateMedicamentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMedicamentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteMedicament" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMedicamentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteMedicamentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMedicamentByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMedicamentById" />
+  </wsdl:message>
+  <wsdl:message name="GetMedicamentByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMedicamentByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MedicamentServiceSoap">
+    <wsdl:operation name="CreateMedicament">
+      <wsdl:input message="tns:CreateMedicamentSoapIn" />
+      <wsdl:output message="tns:CreateMedicamentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMedicaments">
+      <wsdl:input message="tns:ListMedicamentsSoapIn" />
+      <wsdl:output message="tns:ListMedicamentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMedicament">
+      <wsdl:input message="tns:UpdateMedicamentSoapIn" />
+      <wsdl:output message="tns:UpdateMedicamentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMedicament">
+      <wsdl:input message="tns:DeleteMedicamentSoapIn" />
+      <wsdl:output message="tns:DeleteMedicamentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMedicamentById">
+      <wsdl:input message="tns:GetMedicamentByIdSoapIn" />
+      <wsdl:output message="tns:GetMedicamentByIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MedicamentServiceSoap" type="tns:MedicamentServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateMedicament">
+      <soap:operation soapAction="http://tempuri.org/CreateMedicament" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMedicaments">
+      <soap:operation soapAction="http://tempuri.org/ListMedicaments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMedicament">
+      <soap:operation soapAction="http://tempuri.org/UpdateMedicament" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMedicament">
+      <soap:operation soapAction="http://tempuri.org/DeleteMedicament" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMedicamentById">
+      <soap:operation soapAction="http://tempuri.org/GetMedicamentById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MedicamentServiceSoap12" type="tns:MedicamentServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateMedicament">
+      <soap12:operation soapAction="http://tempuri.org/CreateMedicament" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMedicaments">
+      <soap12:operation soapAction="http://tempuri.org/ListMedicaments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMedicament">
+      <soap12:operation soapAction="http://tempuri.org/UpdateMedicament" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMedicament">
+      <soap12:operation soapAction="http://tempuri.org/DeleteMedicament" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMedicamentById">
+      <soap12:operation soapAction="http://tempuri.org/GetMedicamentById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MedicamentService">
+    <wsdl:port name="MedicamentServiceSoap" binding="tns:MedicamentServiceSoap">
+      <soap:address location="http://localhost:50034/WS/MedicamentService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MedicamentServiceSoap12" binding="tns:MedicamentServiceSoap12">
+      <soap12:address location="http://localhost:50034/WS/MedicamentService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

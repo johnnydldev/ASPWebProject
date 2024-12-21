@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateTreatment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="treatment" type="tns:VO_Treatment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VO_Treatment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdTreatment" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecommendTreatment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartedDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Medicament" type="tns:VO_Medicament" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VO_Medicament">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdMedicament" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameMedicament" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dose" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UseInstruction" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateTreatmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateTreatmentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllTreatments">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllTreatmentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTreatmentsResult" type="tns:ArrayOfVO_Treatment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVO_Treatment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VO_Treatment" nillable="true" type="tns:VO_Treatment" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateTreatment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="treatment" type="tns:VO_Treatment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTreatmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateTreatmentResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTreatment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTreatmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteTreatmentResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTreatmentById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTreatmentByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTreatmentByIdResult" type="tns:VO_Treatment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTreatmentByMedicamentId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idMedicament" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTreatmentByMedicamentIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTreatmentByMedicamentIdResult" type="tns:VO_Treatment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateTreatmentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTreatment" />
+  </wsdl:message>
+  <wsdl:message name="CreateTreatmentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTreatmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTreatmentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTreatments" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTreatmentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTreatmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTreatmentSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTreatment" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTreatmentSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTreatmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTreatmentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteTreatment" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTreatmentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteTreatmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTreatmentByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTreatmentById" />
+  </wsdl:message>
+  <wsdl:message name="GetTreatmentByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTreatmentByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTreatmentByMedicamentIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTreatmentByMedicamentId" />
+  </wsdl:message>
+  <wsdl:message name="GetTreatmentByMedicamentIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTreatmentByMedicamentIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TreatmentServiceSoap">
+    <wsdl:operation name="CreateTreatment">
+      <wsdl:input message="tns:CreateTreatmentSoapIn" />
+      <wsdl:output message="tns:CreateTreatmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTreatments">
+      <wsdl:input message="tns:GetAllTreatmentsSoapIn" />
+      <wsdl:output message="tns:GetAllTreatmentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTreatment">
+      <wsdl:input message="tns:UpdateTreatmentSoapIn" />
+      <wsdl:output message="tns:UpdateTreatmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTreatment">
+      <wsdl:input message="tns:DeleteTreatmentSoapIn" />
+      <wsdl:output message="tns:DeleteTreatmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTreatmentById">
+      <wsdl:input message="tns:GetTreatmentByIdSoapIn" />
+      <wsdl:output message="tns:GetTreatmentByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTreatmentByMedicamentId">
+      <wsdl:input message="tns:GetTreatmentByMedicamentIdSoapIn" />
+      <wsdl:output message="tns:GetTreatmentByMedicamentIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TreatmentServiceSoap" type="tns:TreatmentServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateTreatment">
+      <soap:operation soapAction="http://tempuri.org/CreateTreatment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTreatments">
+      <soap:operation soapAction="http://tempuri.org/GetAllTreatments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTreatment">
+      <soap:operation soapAction="http://tempuri.org/UpdateTreatment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTreatment">
+      <soap:operation soapAction="http://tempuri.org/DeleteTreatment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTreatmentById">
+      <soap:operation soapAction="http://tempuri.org/GetTreatmentById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTreatmentByMedicamentId">
+      <soap:operation soapAction="http://tempuri.org/GetTreatmentByMedicamentId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TreatmentServiceSoap12" type="tns:TreatmentServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateTreatment">
+      <soap12:operation soapAction="http://tempuri.org/CreateTreatment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTreatments">
+      <soap12:operation soapAction="http://tempuri.org/GetAllTreatments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTreatment">
+      <soap12:operation soapAction="http://tempuri.org/UpdateTreatment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTreatment">
+      <soap12:operation soapAction="http://tempuri.org/DeleteTreatment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTreatmentById">
+      <soap12:operation soapAction="http://tempuri.org/GetTreatmentById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTreatmentByMedicamentId">
+      <soap12:operation soapAction="http://tempuri.org/GetTreatmentByMedicamentId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TreatmentService">
+    <wsdl:port name="TreatmentServiceSoap" binding="tns:TreatmentServiceSoap">
+      <soap:address location="http://localhost:50034/WS/TreatmentService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TreatmentServiceSoap12" binding="tns:TreatmentServiceSoap12">
+      <soap12:address location="http://localhost:50034/WS/TreatmentService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
