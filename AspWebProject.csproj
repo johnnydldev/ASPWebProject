@@ -50,6 +50,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -149,6 +150,8 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="WS\AddressService.asmx" />
+    <Content Include="WS\MedicamentService.asmx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -431,6 +434,14 @@
     </Compile>
     <Compile Include="View\Treatment\IndexTreatment.aspx.designer.cs">
       <DependentUpon>IndexTreatment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WS\AddressService.asmx.cs">
+      <DependentUpon>AddressService.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="WS\IAddressService.cs" />
+    <Compile Include="WS\IMedicamentService.cs" />
+    <Compile Include="WS\MedicamentService.asmx.cs">
+      <DependentUpon>MedicamentService.asmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -1,37 +1,44 @@
-﻿using DAL;
+﻿using BLL;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using System.Web.Services;
 using VO;
 
-namespace BLL
+namespace AspWebProject.WS
 {
-    public class BLLMedicament
+   
+    public class MedicamentService : IMedicamentService
     {
 
         //Create
-        public static string CreateMedicament(VO_Medicament medicament)
+        [WebMethod]
+        public string CreateMedicament(VO_Medicament medicament)
         {
             return DALMedicament.CreateMedicament(medicament);
         }
+
         //Read
-        public static List<VO_Medicament> ListMedicaments()
+        [WebMethod]
+        public List<VO_Medicament> ListMedicaments()
         {
             return DALMedicament.ListMedicament();
         }
 
         //Update
-        public static string UpdateMedicament(VO_Medicament medicament)
+        [WebMethod]
+        public string UpdateMedicament(VO_Medicament medicament)
         {
             return DALMedicament.UpdateMedicament(medicament);
         }
 
         //Delete
-        public static string DeleteMedicament(int idMedicament)
+        [WebMethod]
+        public string DeleteMedicament(int idMedicament)
         {
-            
+
             VO_Treatment treatment = BLLTreatment.GetTreatmentByMedicamentId(idMedicament);
 
             if (treatment.Medicament.IdMedicament >= 1)
@@ -43,12 +50,12 @@ namespace BLL
 
         }//End delete method
 
-        public static VO_Medicament GetMedicamentById(int id)
+        [WebMethod]
+        public VO_Medicament GetMedicamentById(int id)
         {
             return DALMedicament.GetMedicamentById(id);
         }//End get medicament by id
 
 
-
-    }//End medicament class
+    }//End medicament service class
 }//End namespace
