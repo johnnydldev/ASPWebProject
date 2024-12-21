@@ -29,6 +29,18 @@ idAddress int references dbo.[ADDRESS](idAddress) not null
 
 GO
 
+CREATE TABLE LOG_PATIENT(
+idLogPatient int identity(1, 1) primary key not null,
+namePatient varchar(60) not null,
+middleName varchar(50) not null,
+lastName varchar(50) not null,
+birthDate datetime not null,
+telephone varchar(15) not null,
+[action] varchar(50) not null
+)
+
+GO
+
 CREATE TABLE RECIPE(
 idRecipe int identity(1, 1) primary key not null,
 namePatient varchar(250) not null,
@@ -268,6 +280,16 @@ begin
 
 end
 
+GO
+
+create proc SP_List_Patients_With_Name_Complete as
+begin
+	
+	select idPatient, concat(namePatient, ' ', middleName,' ', lastName) as 'namePatient'
+	from PATIENT ;
+
+end
+
 exec sp_rename 'SP_List_Patient', 'SP_List_Patients'
 
 GO
@@ -278,7 +300,7 @@ create proc SP_Search_Patient_By_Id(
 begin
 
 	select p.idPatient, p.namePatient, p.middleName, p.lastName, p.birthDate, p.telephone,
-	ad.idAddress, ad.street, ad.suburb, ad.city, ad.[state]
+	ad.idAddress, concat(ad.street,' ', ad.suburb,' ', ad.city,' ', ad.[state]) as 'street'
 	from PATIENT p inner join [ADDRESS] ad on p.idAddress = ad.idAddress where p.idPatient = @idPatient;
 
 end
@@ -473,11 +495,17 @@ create proc SP_Create_Diagnostic(
 @idTreatment int,
 @idDoctor int,
 @idPatient int,
-@idLaboratoryResult int
+@idLaboratoryResult int,
+@response int output
 )as
 begin
-
-	insert into DIAGNOSTIC values(@medicalCondition, @registerDate, @idTreatment, @idDoctor, @idPatient, @idLaboratoryResult)
+	
+	set @response = 0
+	if not exists(select * from DIAGNOSTIC where medicalCondition = @medicalCondition and registerDate != @registerDate)
+	begin
+		insert into DIAGNOSTIC values(@medicalCondition, @registerDate, @idTreatment, @idDoctor, @idPatient, @idLaboratoryResult)
+		set @response = 1
+	end
 
 end
 
@@ -490,10 +518,11 @@ create proc SP_Update_Diagnostic(
 @idTreatment int,
 @idDoctor int,
 @idPatient int,
-@idLaboratoryResult int
+@idLaboratoryResult int,
+@response int output
 )as
 begin
-
+	set @response = 0
 	if exists(select * from DIAGNOSTIC where idDiagnostic = @idDiagnostic)
 	begin
 		update DIAGNOSTIC set 
@@ -504,6 +533,7 @@ begin
 		idPatient = @idPatient, 
 		idLaboratoryResult = @idLaboratoryResult
 		where idDiagnostic = @idDiagnostic;
+		set @response = 1
 	end
 
 end
@@ -511,15 +541,17 @@ end
 GO
 
 create proc SP_Delete_Diagnostic(
-@idDiagnostic int
+@idDiagnostic int,
+@response int output
 )as
 begin
 	
+	set @response = 0
 	if exists(select * from Diagnostic where idDiagnostic = @idDiagnostic)
 	begin
 
 		delete top(1) from DIAGNOSTIC where idDiagnostic = @idDiagnostic;
-
+		set @response = 1
 	end
 
 end
@@ -542,6 +574,7 @@ end
 
 GO
 
+
 create proc SP_Search_Diagnostic_By_Id(
 @idDiagnostic int
 )as
@@ -550,7 +583,7 @@ begin
 	select dg.idDiagnostic, dg.medicalCondition, tr.idTreatment, tr.recommendTreatment,
 	d.idDoctor, concat(d.nameDoctor, ' ',d.middleName, ' ',d.lastName) as 'nameDoctor', 
 	p.idPatient, concat(p.namePatient, ' ', p.middleName, ' ', p.lastName) as 'namePatient',
-	lr.idLaboratoryResult, lr.test, lr.resultValue, lr.dateDone
+	lr.idLaboratoryResult, lr.test, lr.resultValue, lr.dateDone, dg.registerDate
 	from Diagnostic dg inner join TREATMENT tr on tr.idTreatment = dg.idTreatment
 	inner join DOCTOR d on d.idDoctor = dg.idDoctor 
 	inner join PATIENT p on p.idPatient = dg.idPatient
@@ -560,6 +593,7 @@ begin
 end
 
 GO
+
 
 create proc SP_Create_Lab_Result(
 @test varchar(150),
@@ -700,7 +734,7 @@ begin
 	
 	set @response = 0
 
-	if exists(select * from DOCTOR where idAddress = @idDoctor)
+	if exists(select * from DOCTOR where idDoctor = @idDoctor)
 	begin
 		delete top(1) from DOCTOR where idDoctor = @idDoctor;
 		set @response = 1
@@ -721,13 +755,37 @@ end
 
 GO
 
+create proc SP_List_Doctors_Name_Complete as
+begin
+
+	select idDoctor, concat( nameDoctor,' ', middleName, ' ',lastName) as 'nameDoctor'
+	from DOCTOR;
+
+end
+
+GO
+
 create proc SP_Search_Doctor_By_Id(
 @idDoctor int
 )as
 begin 
 
 	select d.idDoctor, d.nameDoctor, d.middleName, d.lastName, d.birthDate, d.telephone,
-	ad.idAddress, ad.street, ad.suburb, ad.city, ad.[state]
+	ad.idAddress, concat(ad.street, ' ', ad.suburb,' ', ad.city,' ', ad.[state]) as 'street'
+	from DOCTOR d inner join [ADDRESS] ad on ad.idAddress = d.idAddress
+	where idDoctor = @idDoctor;
+
+end
+
+GO
+
+create proc SP_Search_Doctor_By_Id_To_Edit(
+@idDoctor int
+)as
+begin 
+
+	select d.idDoctor, d.nameDoctor, d.middleName, d.lastName, d.birthDate, d.telephone,
+	ad.idAddress, concat(ad.street, ' ', ad.suburb,' ', ad.city,' ', ad.[state]) as 'street'
 	from DOCTOR d inner join [ADDRESS] ad on ad.idAddress = d.idAddress
 	where idDoctor = @idDoctor;
 
@@ -781,12 +839,9 @@ CREATE PROC SP_Create_Recipe(
 @medicament varchar(200),
 @doctor varchar(250),
 @registerDate datetime,
-@idPatient int,
-@response int output
+@idPatient int
 )AS
 BEGIN
-	
-	set @response = 0
 
 	if not exists(select * from RECIPE where namePatient = @namePatient and 
 	medicalCondition = @medicalCondition and treatment = @treatment and test = @test and testResult = @testResult
@@ -794,8 +849,6 @@ BEGIN
 		begin
 
 			INSERT INTO RECIPE VALUES(@namePatient, @medicalCondition, @treatment, @test, @testResult, @medicament, @doctor, @registerDate, @idPatient)
-			
-			set @response = SCOPE_IDENTITY()
 
 		end
 END
@@ -806,7 +859,7 @@ create proc SP_Get_All_Recipes as
 begin
 
 	select r.idRecipe, r.medicalCondition, r.treatment, 
-	r.test, r.testResult, r.medicament, r.doctor, r.registerDate, p.idPatient, p.namePatient
+	r.test, r.testResult, r.medicament, r.doctor, r.registerDate, p.idPatient, concat(p.namePatient, ' ', p.middleName, ' ', p.lastName) as 'namePatient'
 	from RECIPE r inner join PATIENT p on p.idPatient = r.idPatience;
 
 end
@@ -1040,6 +1093,7 @@ SELECT * FROM PATIENT;
 SELECT * FROM TREATMENT;
 SELECT * FROM RECIPE;
 
+exec SP_Search_Doctor_By_Id @idDoctor = 2
 
 SELECT dg.medicalCondition, (SELECT p.namePatient FROM PATIENT p WHERE p.idPatient = dg.idPatient) AS 'Nombre paciente'
 FROM DIAGNOSTIC dg
@@ -1085,6 +1139,24 @@ end
 
 GO
 
+create proc SP_Verify_Patient_Linked_With_Diagnostic(
+@idPatient int
+)as
+begin
+
+	select dg.idDiagnostic, dg.medicalCondition, tr.idTreatment, tr.recommendTreatment,
+	d.idDoctor, concat(d.nameDoctor, ' ',d.middleName, ' ',d.lastName) as 'nameDoctor', 
+	p.idPatient, concat(p.namePatient, ' ', p.middleName, ' ', p.lastName) as 'namePatient',
+	lr.idLaboratoryResult, lr.test, lr.resultValue, lr.dateDone
+	from Diagnostic dg inner join TREATMENT tr on tr.idTreatment = dg.idTreatment
+	inner join DOCTOR d on d.idDoctor = dg.idDoctor 
+	inner join PATIENT p on p.idPatient = dg.idPatient
+	inner join LABORATORY_RESULT lr on lr.idLaboratoryResult = dg.idLaboratoryResult
+	where dg.idPatient = @idPatient;
+
+end
+
+GO
 
 create proc SP_Verify_Medicament_Linked_With_Treatment(
 @idMedicament int
@@ -1099,6 +1171,7 @@ begin
 end
 
 GO
+
 
 
 
