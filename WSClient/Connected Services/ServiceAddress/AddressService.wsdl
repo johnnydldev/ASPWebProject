@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="tns:VO_Address" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VO_Address">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdAddress" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Street" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suburb" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateAddressResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListAddresss">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parameters" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVO_Address">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VO_Address" nillable="true" type="tns:VO_Address" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListAddresssResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListAddresssResult" type="tns:ArrayOfVO_Address" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAddressById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAddressByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAddressByIdResult" type="tns:VO_Address" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="tns:VO_Address" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAddressResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteAddressResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListAddressComplete">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListAddressCompleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListAddressCompleteResult" type="tns:ArrayOfVO_Address" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateAddress" />
+  </wsdl:message>
+  <wsdl:message name="CreateAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListAddresssSoapIn">
+    <wsdl:part name="parameters" element="tns:ListAddresss" />
+  </wsdl:message>
+  <wsdl:message name="ListAddresssSoapOut">
+    <wsdl:part name="parameters" element="tns:ListAddresssResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAddressById" />
+  </wsdl:message>
+  <wsdl:message name="GetAddressByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAddressByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAddress" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteAddress" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListAddressCompleteSoapIn">
+    <wsdl:part name="parameters" element="tns:ListAddressComplete" />
+  </wsdl:message>
+  <wsdl:message name="ListAddressCompleteSoapOut">
+    <wsdl:part name="parameters" element="tns:ListAddressCompleteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AddressServiceSoap">
+    <wsdl:operation name="CreateAddress">
+      <wsdl:input message="tns:CreateAddressSoapIn" />
+      <wsdl:output message="tns:CreateAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAddresss">
+      <wsdl:input message="tns:ListAddresssSoapIn" />
+      <wsdl:output message="tns:ListAddresssSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressById">
+      <wsdl:input message="tns:GetAddressByIdSoapIn" />
+      <wsdl:output message="tns:GetAddressByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAddress">
+      <wsdl:input message="tns:UpdateAddressSoapIn" />
+      <wsdl:output message="tns:UpdateAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAddress">
+      <wsdl:input message="tns:DeleteAddressSoapIn" />
+      <wsdl:output message="tns:DeleteAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAddressComplete">
+      <wsdl:input message="tns:ListAddressCompleteSoapIn" />
+      <wsdl:output message="tns:ListAddressCompleteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AddressServiceSoap" type="tns:AddressServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateAddress">
+      <soap:operation soapAction="http://tempuri.org/CreateAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAddresss">
+      <soap:operation soapAction="http://tempuri.org/ListAddresss" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressById">
+      <soap:operation soapAction="http://tempuri.org/GetAddressById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAddress">
+      <soap:operation soapAction="http://tempuri.org/UpdateAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAddress">
+      <soap:operation soapAction="http://tempuri.org/DeleteAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAddressComplete">
+      <soap:operation soapAction="http://tempuri.org/ListAddressComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AddressServiceSoap12" type="tns:AddressServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateAddress">
+      <soap12:operation soapAction="http://tempuri.org/CreateAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAddresss">
+      <soap12:operation soapAction="http://tempuri.org/ListAddresss" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressById">
+      <soap12:operation soapAction="http://tempuri.org/GetAddressById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAddress">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAddress">
+      <soap12:operation soapAction="http://tempuri.org/DeleteAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListAddressComplete">
+      <soap12:operation soapAction="http://tempuri.org/ListAddressComplete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AddressService">
+    <wsdl:port name="AddressServiceSoap" binding="tns:AddressServiceSoap">
+      <soap:address location="http://localhost:50034/WS/AddressService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AddressServiceSoap12" binding="tns:AddressServiceSoap12">
+      <soap12:address location="http://localhost:50034/WS/AddressService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

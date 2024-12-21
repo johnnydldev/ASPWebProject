@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateDiagnostic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="diagnostic" type="tns:VO_Diagnostic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VO_Diagnostic">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdDiagnostic" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MedicalCondition" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegisterDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Treatment" type="tns:VO_Treatment" />
+          <s:element minOccurs="0" maxOccurs="1" name="Doctor" type="tns:VO_Doctor" />
+          <s:element minOccurs="0" maxOccurs="1" name="Patient" type="tns:VO_Patient" />
+          <s:element minOccurs="0" maxOccurs="1" name="LabResult" type="tns:VO_Laboratory_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VO_Treatment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdTreatment" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecommendTreatment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartedDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Medicament" type="tns:VO_Medicament" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VO_Medicament">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdMedicament" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameMedicament" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dose" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UseInstruction" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VO_Doctor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdDoctor" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameDoctor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BirthDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="tns:VO_Address" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VO_Address">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdAddress" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Street" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suburb" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VO_Patient">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdPatient" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NamePatient" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BirthDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="tns:VO_Address" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VO_Laboratory_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdLaboratoryResult" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Test" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResultValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateDone" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateDiagnosticResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateDiagnosticResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllDiagnostics">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllDiagnosticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDiagnosticsResult" type="tns:ArrayOfVO_Diagnostic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVO_Diagnostic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VO_Diagnostic" nillable="true" type="tns:VO_Diagnostic" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateDiagnostic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="diagnostic" type="tns:VO_Diagnostic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDiagnosticResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateDiagnosticResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDiagnostic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDiagnosticResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteDiagnosticResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDiagnosticByLabId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDiagnosticByLabIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDiagnosticByLabIdResult" type="tns:VO_Diagnostic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDiagnosticByDoctorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idDoctor" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDiagnosticByDoctorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDiagnosticByDoctorIdResult" type="tns:VO_Diagnostic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDiagnosticByPatientId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idDoctor" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDiagnosticByPatientIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDiagnosticByPatientIdResult" type="tns:VO_Diagnostic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDiagnosticById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idDoctor" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDiagnosticByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDiagnosticByIdResult" type="tns:VO_Diagnostic" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateDiagnosticSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDiagnostic" />
+  </wsdl:message>
+  <wsdl:message name="CreateDiagnosticSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDiagnosticResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDiagnosticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDiagnostics" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDiagnosticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDiagnosticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDiagnosticSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDiagnostic" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDiagnosticSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDiagnosticResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDiagnosticSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDiagnostic" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDiagnosticSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDiagnosticResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticByLabIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticByLabId" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticByLabIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticByLabIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticByDoctorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticByDoctorId" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticByDoctorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticByDoctorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticByPatientIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticByPatientId" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticByPatientIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticByPatientIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticById" />
+  </wsdl:message>
+  <wsdl:message name="GetDiagnosticByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDiagnosticByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DiagnosticServiceSoap">
+    <wsdl:operation name="CreateDiagnostic">
+      <wsdl:input message="tns:CreateDiagnosticSoapIn" />
+      <wsdl:output message="tns:CreateDiagnosticSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDiagnostics">
+      <wsdl:input message="tns:GetAllDiagnosticsSoapIn" />
+      <wsdl:output message="tns:GetAllDiagnosticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiagnostic">
+      <wsdl:input message="tns:UpdateDiagnosticSoapIn" />
+      <wsdl:output message="tns:UpdateDiagnosticSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDiagnostic">
+      <wsdl:input message="tns:DeleteDiagnosticSoapIn" />
+      <wsdl:output message="tns:DeleteDiagnosticSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticByLabId">
+      <wsdl:input message="tns:GetDiagnosticByLabIdSoapIn" />
+      <wsdl:output message="tns:GetDiagnosticByLabIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticByDoctorId">
+      <wsdl:input message="tns:GetDiagnosticByDoctorIdSoapIn" />
+      <wsdl:output message="tns:GetDiagnosticByDoctorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticByPatientId">
+      <wsdl:input message="tns:GetDiagnosticByPatientIdSoapIn" />
+      <wsdl:output message="tns:GetDiagnosticByPatientIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticById">
+      <wsdl:input message="tns:GetDiagnosticByIdSoapIn" />
+      <wsdl:output message="tns:GetDiagnosticByIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DiagnosticServiceSoap" type="tns:DiagnosticServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateDiagnostic">
+      <soap:operation soapAction="http://tempuri.org/CreateDiagnostic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDiagnostics">
+      <soap:operation soapAction="http://tempuri.org/GetAllDiagnostics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiagnostic">
+      <soap:operation soapAction="http://tempuri.org/UpdateDiagnostic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDiagnostic">
+      <soap:operation soapAction="http://tempuri.org/DeleteDiagnostic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticByLabId">
+      <soap:operation soapAction="http://tempuri.org/GetDiagnosticByLabId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticByDoctorId">
+      <soap:operation soapAction="http://tempuri.org/GetDiagnosticByDoctorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticByPatientId">
+      <soap:operation soapAction="http://tempuri.org/GetDiagnosticByPatientId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticById">
+      <soap:operation soapAction="http://tempuri.org/GetDiagnosticById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DiagnosticServiceSoap12" type="tns:DiagnosticServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateDiagnostic">
+      <soap12:operation soapAction="http://tempuri.org/CreateDiagnostic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDiagnostics">
+      <soap12:operation soapAction="http://tempuri.org/GetAllDiagnostics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiagnostic">
+      <soap12:operation soapAction="http://tempuri.org/UpdateDiagnostic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDiagnostic">
+      <soap12:operation soapAction="http://tempuri.org/DeleteDiagnostic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticByLabId">
+      <soap12:operation soapAction="http://tempuri.org/GetDiagnosticByLabId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticByDoctorId">
+      <soap12:operation soapAction="http://tempuri.org/GetDiagnosticByDoctorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticByPatientId">
+      <soap12:operation soapAction="http://tempuri.org/GetDiagnosticByPatientId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiagnosticById">
+      <soap12:operation soapAction="http://tempuri.org/GetDiagnosticById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DiagnosticService">
+    <wsdl:port name="DiagnosticServiceSoap" binding="tns:DiagnosticServiceSoap">
+      <soap:address location="http://localhost:50034/WS/DiagnosticService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DiagnosticServiceSoap12" binding="tns:DiagnosticServiceSoap12">
+      <soap12:address location="http://localhost:50034/WS/DiagnosticService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

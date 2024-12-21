@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateLabResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lr" type="tns:VO_Laboratory_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VO_Laboratory_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdLaboratoryResult" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Test" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResultValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateDone" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateLabResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateLabResultResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListLabResults">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListLabResultsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListLabResultsResult" type="tns:ArrayOfVO_Laboratory_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVO_Laboratory_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VO_Laboratory_Result" nillable="true" type="tns:VO_Laboratory_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateLabResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lr" type="tns:VO_Laboratory_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateLabResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateLabResultResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLabResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idLab" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLabResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteLabResultResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLaboratoryResultById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLaboratoryResultByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLaboratoryResultByIdResult" type="tns:VO_Laboratory_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateLabResultSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateLabResult" />
+  </wsdl:message>
+  <wsdl:message name="CreateLabResultSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateLabResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListLabResultsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListLabResults" />
+  </wsdl:message>
+  <wsdl:message name="ListLabResultsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListLabResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateLabResultSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateLabResult" />
+  </wsdl:message>
+  <wsdl:message name="UpdateLabResultSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateLabResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLabResultSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteLabResult" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLabResultSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteLabResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLaboratoryResultByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLaboratoryResultById" />
+  </wsdl:message>
+  <wsdl:message name="GetLaboratoryResultByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLaboratoryResultByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LabResultServiceSoap">
+    <wsdl:operation name="CreateLabResult">
+      <wsdl:input message="tns:CreateLabResultSoapIn" />
+      <wsdl:output message="tns:CreateLabResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListLabResults">
+      <wsdl:input message="tns:ListLabResultsSoapIn" />
+      <wsdl:output message="tns:ListLabResultsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLabResult">
+      <wsdl:input message="tns:UpdateLabResultSoapIn" />
+      <wsdl:output message="tns:UpdateLabResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLabResult">
+      <wsdl:input message="tns:DeleteLabResultSoapIn" />
+      <wsdl:output message="tns:DeleteLabResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLaboratoryResultById">
+      <wsdl:input message="tns:GetLaboratoryResultByIdSoapIn" />
+      <wsdl:output message="tns:GetLaboratoryResultByIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LabResultServiceSoap" type="tns:LabResultServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateLabResult">
+      <soap:operation soapAction="http://tempuri.org/CreateLabResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListLabResults">
+      <soap:operation soapAction="http://tempuri.org/ListLabResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLabResult">
+      <soap:operation soapAction="http://tempuri.org/UpdateLabResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLabResult">
+      <soap:operation soapAction="http://tempuri.org/DeleteLabResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLaboratoryResultById">
+      <soap:operation soapAction="http://tempuri.org/GetLaboratoryResultById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LabResultServiceSoap12" type="tns:LabResultServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateLabResult">
+      <soap12:operation soapAction="http://tempuri.org/CreateLabResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListLabResults">
+      <soap12:operation soapAction="http://tempuri.org/ListLabResults" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLabResult">
+      <soap12:operation soapAction="http://tempuri.org/UpdateLabResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLabResult">
+      <soap12:operation soapAction="http://tempuri.org/DeleteLabResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLaboratoryResultById">
+      <soap12:operation soapAction="http://tempuri.org/GetLaboratoryResultById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LabResultService">
+    <wsdl:port name="LabResultServiceSoap" binding="tns:LabResultServiceSoap">
+      <soap:address location="http://localhost:50034/WS/LabResultService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LabResultServiceSoap12" binding="tns:LabResultServiceSoap12">
+      <soap12:address location="http://localhost:50034/WS/LabResultService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
