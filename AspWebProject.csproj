@@ -151,7 +151,13 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="WS\AddressService.asmx" />
+    <Content Include="WS\DiagnosticService.asmx" />
+    <Content Include="WS\DoctorService.asmx" />
+    <Content Include="WS\LabResultService.asmx" />
     <Content Include="WS\MedicamentService.asmx" />
+    <Content Include="WS\PatientService.asmx" />
+    <Content Include="WS\RecipeService.asmx" />
+    <Content Include="WS\TreatmentService.asmx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -438,10 +444,34 @@
     <Compile Include="WS\AddressService.asmx.cs">
       <DependentUpon>AddressService.asmx</DependentUpon>
     </Compile>
-    <Compile Include="WS\IAddressService.cs" />
-    <Compile Include="WS\IMedicamentService.cs" />
+    <Compile Include="WS\DiagnosticService.asmx.cs">
+      <DependentUpon>DiagnosticService.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="WS\DoctorService.asmx.cs">
+      <DependentUpon>DoctorService.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="WS\Interface\IAddressService.cs" />
+    <Compile Include="WS\Interface\IDiagnosticService.cs" />
+    <Compile Include="WS\Interface\IDoctorService.cs" />
+    <Compile Include="WS\Interface\ILabResultService.cs" />
+    <Compile Include="WS\Interface\IMedicamentService.cs" />
+    <Compile Include="WS\Interface\IPatientService.cs" />
+    <Compile Include="WS\Interface\IRecipeService.cs" />
+    <Compile Include="WS\Interface\ITreatmentService.cs" />
+    <Compile Include="WS\LabResultService.asmx.cs">
+      <DependentUpon>LabResultService.asmx</DependentUpon>
+    </Compile>
     <Compile Include="WS\MedicamentService.asmx.cs">
       <DependentUpon>MedicamentService.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="WS\PatientService.asmx.cs">
+      <DependentUpon>PatientService.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="WS\RecipeService.asmx.cs">
+      <DependentUpon>RecipeService.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="WS\TreatmentService.asmx.cs">
+      <DependentUpon>TreatmentService.asmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

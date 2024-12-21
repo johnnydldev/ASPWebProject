@@ -41,28 +41,52 @@ namespace DAL
         }//End create labResult method
 
         //Read
-        public static List<VO_Laboratory_Result> ListlabResult(params object[] parameters)
+        public static List<VO_Laboratory_Result> ListlabResult()
         {
-            //creo una lista de objetox VO
-            List<VO_Laboratory_Result> list = new List<VO_Laboratory_Result>();
-            try
-            {
-                //creo un DataSet el cuál recibirá lo que devuelva la ejecución del método "execute_DataSet" de la clase "metodos_datos"
-                DataSet dslabResult = DataGetObject.executeDataSet("SP_List_Lab_Results", parameters);
-                //recorro cada renglón existente de nuestro ds creando objetos del tipo VO y añadiendolos a la lista
-                foreach (DataRow dr in dslabResult.Tables[0].Rows)
-                {
-                    list.Add(new VO_Laboratory_Result(dr));
-                }
-                return list;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ha ocurrido : " + ex.ToString());
-                throw;
-            }
+            List<VO_Laboratory_Result> labResults = new List<VO_Laboratory_Result>();
 
-        }//End list labResult method
+            using (var objConnection = new SqlConnection(Configuration.GetStringConnection))
+            {
+                SqlDataReader reader;
+                try
+                {
+
+                    SqlCommand cmd = new SqlCommand("SP_List_Lab_Results", objConnection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    objConnection.Open();
+
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            labResults.Add(new VO_Laboratory_Result()
+                            {
+                                IdLaboratoryResult = Convert.ToInt32(reader["idLaboratoryResult"].ToString()),
+                                Test = reader["test"].ToString(),
+                                ResultValue = reader["resultValue"].ToString(),
+                                DateDone = reader["dateDone"].ToString()
+
+                            });//End VO_LaboratoryResults listing
+
+                        }
+                    }//End information reading
+
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.ToString());
+                    labResults = new List<VO_Laboratory_Result>();
+                }
+
+
+            }//End using of stringConnection
+
+
+            return labResults;
+        }//End listing VO_LaboratoryResults
 
         //Update
         public static string UpdatelabResult(VO_Laboratory_Result labResult)

@@ -1,46 +1,47 @@
-﻿using VO;
+﻿using AspWebProject.WS.Interface;
+using BLL;
 using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using System.Web.Services;
+using VO;
 
-namespace BLL
+namespace AspWebProject.WS
 {
-    public class BLLLaboratoryResult
+   
+    public class LabResultService : ILabResultService
     {
 
+
         //Create
-        public static string CreateLabResult(VO_Laboratory_Result lr)
+        [WebMethod]
+        public string CreateLabResult(VO_Laboratory_Result lr)
         {
             return DALLaboratoryResult.CreateLabResult(lr);
         }
+
         //Read
-        public static List<VO_Laboratory_Result> ListLabResults()
+        [WebMethod]
+        public List<VO_Laboratory_Result> ListLabResults()
         {
             return DALLaboratoryResult.ListlabResult();
         }
 
-        /* Method to list the results by patient
-        public static List<VO_Laboratory_Result> ListLabResultByPatient(int idPatient)
-        {
-            List<VO_Laboratory_Result> listPatient = DAL_Camiones.Get_Camiones();
-
-            return lista_vacia;
-        }*/
-
         //Update
-        public static string UpdateLabResult(VO_Laboratory_Result lr)
+        [WebMethod]
+        public string UpdateLabResult(VO_Laboratory_Result lr)
         {
             return DALLaboratoryResult.UpdatelabResult(lr);
         }
 
         //Delete
-        public static string DeleteLabResult(int idLab)
+        [WebMethod]
+        public string DeleteLabResult(int idLab)
         {
             VO_Diagnostic diagnostic = BLLDiagnostic.GetDiagnosticByLabId(idLab);
-            
+
             if (diagnostic.LabResult.IdLaboratoryResult >= 1)
             {
                 return "El resultado de laboratorio esta vinculado a un diagnostico, no se puede eliminar ";
@@ -51,11 +52,12 @@ namespace BLL
 
         }//End delete method
 
-        public static VO_Laboratory_Result GetLaboratoryResultById(int id)
+        [WebMethod]
+        public VO_Laboratory_Result GetLaboratoryResultById(int id)
         {
             return DALLaboratoryResult.GetLaboratoryResultById(id);
         }//End get laboratory by id
 
 
-    }//End lab result class
-}//End namespace
+    }//End class
+}
